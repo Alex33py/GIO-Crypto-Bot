@@ -1,0 +1,2024 @@
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 10}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 10}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 4}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 0}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 10}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 10}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 2}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 1}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+
+
+================================================================================
+[WARNING] 2025-10-05 11:55:42
+================================================================================
+
+ERROR TYPE: AttributeError
+ERROR MESSAGE: type object 'DataValidator' has no attribute 'validate_trades'
+
+CONTEXT:
+  module: Analytics
+  calculation: CVD Update
+  input_type: dict
+  input_preview: {'trades_count': 10}
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "D:\GIO.BOT.02\analytics\cvd_calculator.py", line 51, in update
+    if not DataValidator.validate_trades(trades):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'DataValidator' has no attribute 'validate_trades'. Did you mean: 'validate_price'?
+
+================================================================================
+

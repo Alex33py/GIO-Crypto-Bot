@@ -1,0 +1,571 @@
+2025-10-02 18:41:54,360 - config.settings - INFO - ✅ Конфигурация загружена успешно (PRODUCTION MODE)
+2025-10-02 18:59:14,136 - config.settings - INFO - ✅ Конфигурация загружена успешно (PRODUCTION MODE)
+2025-10-02 18:59:14,222 - config.settings - INFO - 🔍 Проверка окружения...
+2025-10-02 18:59:14,222 - config.settings - INFO - ✅ Python 3.13.7
+2025-10-02 18:59:18,339 - config.settings - INFO - ✅ Все критические модули доступны
+2025-10-02 18:59:18,342 - config.settings - INFO - [94m🚀 Инициализация завершена успешно![0m
+2025-10-02 18:59:18,342 - config.settings - INFO - [94m📂 Структура модулей создана[0m
+2025-10-02 18:59:18,343 - config.settings - INFO - [92m✅ GIO Crypto Bot готов к работе![0m
+2025-10-02 20:03:46,766 - config.settings - INFO - ✅ Конфигурация загружена успешно (PRODUCTION MODE)
+2025-10-02 20:03:47,221 - config.settings - INFO - 🔍 Проверка окружения...
+2025-10-02 20:03:47,222 - config.settings - INFO - ✅ Python 3.13.7
+2025-10-02 20:04:15,893 - config.settings - INFO - ✅ Все критические модули доступны
+2025-10-02 20:04:15,898 - config.settings - INFO - [94m🚀 Инициализация завершена успешно![0m
+2025-10-02 20:04:15,899 - config.settings - INFO - [94m📂 Структура модулей создана[0m
+2025-10-02 20:04:15,901 - config.settings - INFO - [92m✅ GIO Crypto Bot готов к работе![0m
+2025-10-02 20:57:22,613 - config.settings - INFO - ✅ Конфигурация загружена успешно (PRODUCTION MODE)
+2025-10-02 21:05:36,208 - config.settings - INFO - ✅ Конфигурация загружена успешно (PRODUCTION MODE)
+2025-10-02 21:08:45,129 - config.settings - INFO - ✅ Конфигурация загружена успешно (PRODUCTION MODE)
+2025-10-02 21:14:54,155 - config.settings - INFO - ✅ Конфигурация загружена успешно (PRODUCTION MODE)
+2025-10-02 21:14:58,226 - config.settings - INFO - 🔍 Проверка окружения...
+2025-10-02 21:14:58,226 - config.settings - INFO - ✅ Python 3.13.7
+2025-10-02 21:14:58,227 - config.settings - INFO - ✅ Все критические модули доступны
+2025-10-02 21:14:58,242 - config.settings - INFO - [94m🚀 Запуск GIO Crypto Bot v3.0...[0m
+2025-10-02 21:14:58,243 - config.settings - INFO - [92m✅ GIOCryptoBot инициализирован[0m
+2025-10-02 21:14:58,245 - config.settings - INFO - ⚡ Запуск полной инициализации всех модулей...
+2025-10-02 21:14:58,247 - config.settings - INFO - [94m🔄 Начинаем инициализацию GIO Crypto Bot...[0m
+2025-10-02 21:14:58,251 - config.settings - INFO - 🧠 Инициализация менеджера памяти...
+2025-10-02 21:14:58,253 - config.settings - ERROR - [91m❌ Ошибка инициализации бота: module 'gc' has no attribute 'get_counts'[0m
+2025-10-02 21:14:58,254 - config.settings - ERROR - [91m❌ Ошибка инициализации: Не удалось инициализировать бота: module 'gc' has no attribute 'get_counts'[0m
+2025-10-02 21:14:58,255 - config.settings - INFO - 💡 Проверьте:
+2025-10-02 21:14:58,256 - config.settings - INFO -   - API ключи в .env файле
+2025-10-02 21:14:58,257 - config.settings - INFO -   - Подключение к интернету
+2025-10-02 21:14:58,257 - config.settings - INFO -   - Все модули созданы правильно
+2025-10-02 21:14:58,258 - config.settings - INFO - [94m🔄 Начинаем завершение работы GIO Crypto Bot...[0m
+2025-10-02 21:14:58,261 - config.settings - INFO - 🗑️ Финальная очистка памяти...
+2025-10-02 21:14:58,281 - config.settings - INFO - [92m✅ GIO Crypto Bot завершён корректно[0m
+2025-10-02 21:20:00,921 - config.settings - INFO - ✅ Конфигурация загружена успешно (PRODUCTION MODE)
+2025-10-02 21:20:01,918 - config.settings - INFO - 🔍 Проверка окружения...
+2025-10-02 21:20:01,918 - config.settings - INFO - ✅ Python 3.13.7
+2025-10-02 21:20:01,919 - config.settings - INFO - ✅ Все критические модули доступны
+2025-10-02 21:20:01,920 - config.settings - INFO - [94m🚀 Запуск GIO Crypto Bot v3.0...[0m
+2025-10-02 21:20:01,921 - config.settings - INFO - [92m✅ GIOCryptoBot инициализирован[0m
+2025-10-02 21:20:01,921 - config.settings - INFO - ⚡ Запуск полной инициализации всех модулей...
+2025-10-02 21:20:01,921 - config.settings - INFO - [94m🔄 Начинаем инициализацию GIO Crypto Bot...[0m
+2025-10-02 21:20:01,922 - config.settings - INFO - 🧠 Инициализация менеджера памяти...
+2025-10-02 21:20:01,922 - config.settings - ERROR - [91m❌ Ошибка инициализации бота: module 'gc' has no attribute 'get_counts'[0m
+2025-10-02 21:20:01,922 - config.settings - ERROR - [91m❌ Ошибка инициализации: Не удалось инициализировать бота: module 'gc' has no attribute 'get_counts'[0m
+2025-10-02 21:20:01,923 - config.settings - INFO - 💡 Проверьте:
+2025-10-02 21:20:01,923 - config.settings - INFO -   - API ключи в .env файле
+2025-10-02 21:20:01,923 - config.settings - INFO -   - Подключение к интернету
+2025-10-02 21:20:01,924 - config.settings - INFO -   - Все модули созданы правильно
+2025-10-02 21:20:01,924 - config.settings - INFO - [94m🔄 Начинаем завершение работы GIO Crypto Bot...[0m
+2025-10-02 21:20:01,924 - config.settings - INFO - 🗑️ Финальная очистка памяти...
+2025-10-02 21:20:01,947 - config.settings - INFO - [92m✅ GIO Crypto Bot завершён корректно[0m
+2025-10-02 21:21:52,123 - config.settings - INFO - ✅ Конфигурация загружена успешно (PRODUCTION MODE)
+2025-10-02 21:21:52,948 - config.settings - INFO - 🔍 Проверка окружения...
+2025-10-02 21:21:52,949 - config.settings - INFO - ✅ Python 3.13.7
+2025-10-02 21:21:52,949 - config.settings - INFO - ✅ Все критические модули доступны
+2025-10-02 21:21:52,951 - config.settings - INFO - [94m🚀 Запуск GIO Crypto Bot v3.0...[0m
+2025-10-02 21:21:52,951 - config.settings - INFO - [92m✅ GIOCryptoBot инициализирован[0m
+2025-10-02 21:21:52,952 - config.settings - INFO - ⚡ Запуск полной инициализации всех модулей...
+2025-10-02 21:21:52,952 - config.settings - INFO - [94m🔄 Начинаем инициализацию GIO Crypto Bot...[0m
+2025-10-02 21:21:52,953 - config.settings - INFO - 🧠 Инициализация менеджера памяти...
+2025-10-02 21:21:53,000 - config.settings - INFO - ✅ AdvancedMemoryManager инициализирован (лимит: 1024MB)
+2025-10-02 21:21:53,001 - config.settings - INFO - 📋 Инициализация менеджера сценариев...
+2025-10-02 21:21:53,001 - config.settings - INFO - ✅ ScenarioManager инициализирован
+2025-10-02 21:21:53,234 - config.settings - INFO - ✅ Таблицы базы данных инициализированы
+2025-10-02 21:21:53,355 - config.settings - WARNING - ⚠️ Сценарий version не прошёл валидацию
+2025-10-02 21:21:53,355 - config.settings - WARNING - ⚠️ Сценарий count не прошёл валидацию
+2025-10-02 21:21:53,356 - config.settings - WARNING - ⚠️ Сценарий scenarios не прошёл валидацию
+2025-10-02 21:21:53,357 - config.settings - WARNING - ⚠️ Сценарий trigger_policy_percent не прошёл валидацию
+2025-10-02 21:21:53,357 - config.settings - WARNING - ⚠️ Сценарий meta не прошёл валидацию
+2025-10-02 21:21:53,358 - config.settings - WARNING - ⚠️ Сценарий params_default не прошёл валидацию
+2025-10-02 21:21:53,359 - config.settings - WARNING - ⚠️ Сценарий params_overrides не прошёл валидацию
+2025-10-02 21:21:53,359 - config.settings - WARNING - ⚠️ Сценарий mtf_policy не прошёл валидацию
+2025-10-02 21:21:53,360 - config.settings - WARNING - ⚠️ Сценарий news_policy не прошёл валидацию
+2025-10-02 21:21:53,363 - config.settings - WARNING - ⚠️ Сценарий decision_policy не прошёл валидацию
+2025-10-02 21:21:53,364 - config.settings - WARNING - ⚠️ Сценарий tactics_policy не прошёл валидацию
+2025-10-02 21:21:53,364 - config.settings - WARNING - ⚠️ Сценарий sizing_policy не прошёл валидацию
+2025-10-02 21:21:53,370 - config.settings - WARNING - ⚠️ Не найдено торговых сценариев
+2025-10-02 21:21:53,371 - config.settings - INFO - 📝 Создание сценариев по умолчанию...
+2025-10-02 21:21:53,526 - config.settings - INFO - ✅ Сценарий rsi_oversold_bounce сохранён успешно
+2025-10-02 21:21:53,638 - config.settings - INFO - ✅ Сценарий rsi_overbought_short сохранён успешно
+2025-10-02 21:21:53,802 - config.settings - INFO - ✅ Сценарий support_bounce сохранён успешно
+2025-10-02 21:21:54,048 - config.settings - INFO - ✅ Сценарий resistance_rejection сохранён успешно
+2025-10-02 21:21:54,293 - config.settings - INFO - ✅ Сценарий news_momentum сохранён успешно
+2025-10-02 21:21:54,294 - config.settings - INFO - ✅ Создано 5 сценариев по умолчанию
+2025-10-02 21:21:54,319 - config.settings - WARNING - ⚠️ Сценарий version не прошёл валидацию
+2025-10-02 21:21:54,319 - config.settings - WARNING - ⚠️ Сценарий count не прошёл валидацию
+2025-10-02 21:21:54,324 - config.settings - WARNING - ⚠️ Сценарий scenarios не прошёл валидацию
+2025-10-02 21:21:54,325 - config.settings - WARNING - ⚠️ Сценарий trigger_policy_percent не прошёл валидацию
+2025-10-02 21:21:54,326 - config.settings - WARNING - ⚠️ Сценарий meta не прошёл валидацию
+2025-10-02 21:21:54,327 - config.settings - WARNING - ⚠️ Сценарий params_default не прошёл валидацию
+2025-10-02 21:21:54,328 - config.settings - WARNING - ⚠️ Сценарий params_overrides не прошёл валидацию
+2025-10-02 21:21:54,329 - config.settings - WARNING - ⚠️ Сценарий mtf_policy не прошёл валидацию
+2025-10-02 21:21:54,329 - config.settings - WARNING - ⚠️ Сценарий news_policy не прошёл валидацию
+2025-10-02 21:21:54,330 - config.settings - WARNING - ⚠️ Сценарий decision_policy не прошёл валидацию
+2025-10-02 21:21:54,330 - config.settings - WARNING - ⚠️ Сценарий tactics_policy не прошёл валидацию
+2025-10-02 21:21:54,331 - config.settings - WARNING - ⚠️ Сценарий sizing_policy не прошёл валидацию
+2025-10-02 21:21:54,342 - config.settings - INFO - ✅ Загружено 5 торговых сценариев
+2025-10-02 21:21:54,342 - config.settings - INFO - ✅ Загружено 5 торговых сценариев
+2025-10-02 21:21:54,343 - config.settings - INFO - 🔌 Инициализация API коннекторов...
+2025-10-02 21:21:54,344 - config.settings - INFO - ✅ EnhancedBybitConnector инициализирован
+2025-10-02 21:21:54,878 - config.settings - INFO - ✅ Подключение к Bybit API успешно
+2025-10-02 21:21:54,879 - config.settings - INFO - 🚀 Bybit коннектор инициализирован успешно
+2025-10-02 21:21:54,880 - config.settings - INFO - ✅ UnifiedNewsConnector инициализирован
+2025-10-02 21:21:54,880 - config.settings - INFO - 📊 Инициализация аналитических модулей...
+2025-10-02 21:21:54,881 - config.settings - INFO - ✅ EnhancedVolumeProfileCalculator инициализирован
+2025-10-02 21:21:54,882 - config.settings - INFO - ✅ ProfessionalNewsAnalyzer инициализирован
+2025-10-02 21:21:54,882 - config.settings - INFO - ✅ EnhancedVetoSystem инициализирована
+2025-10-02 21:21:54,883 - config.settings - INFO - 💹 Инициализация торговых модулей...
+2025-10-02 21:21:54,883 - config.settings - INFO - ✅ AdvancedSignalGenerator инициализирован
+2025-10-02 21:21:54,884 - config.settings - INFO - ✅ ROITracker инициализирован
+2025-10-02 21:21:54,884 - config.settings - INFO - ⏰ Настройка планировщика задач...
+2025-10-02 21:21:55,317 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-10-02 21:21:55,319 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-10-02 21:21:55,320 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-10-02 21:21:55,322 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-10-02 21:21:55,323 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-10-02 21:21:55,325 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-10-02 21:21:55,326 - config.settings - INFO - ✅ Планировщик задач настроен
+2025-10-02 21:21:55,339 - config.settings - INFO - ✅ Все проверки здоровья пройдены успешно
+2025-10-02 21:21:55,340 - config.settings - INFO - [92m🚀 GIO Crypto Bot инициализирован успешно![0m
+2025-10-02 21:21:55,340 - config.settings - INFO - [92m🎯 Все модули инициализированы! Запуск главного цикла...[0m
+2025-10-02 21:21:55,341 - config.settings - INFO - [92m🎯 Запуск главного цикла GIO Crypto Bot[0m
+2025-10-02 21:21:55,361 - apscheduler.scheduler - INFO - Added job "Обновление рыночных данных" to job store "default"
+2025-10-02 21:21:55,368 - apscheduler.scheduler - INFO - Added job "Обновление новостных данных" to job store "default"
+2025-10-02 21:21:55,372 - apscheduler.scheduler - INFO - Added job "Анализ торговых сценариев" to job store "default"
+2025-10-02 21:21:55,374 - apscheduler.scheduler - INFO - Added job "Обновление Volume Profile" to job store "default"
+2025-10-02 21:21:55,375 - apscheduler.scheduler - INFO - Added job "Отображение статуса" to job store "default"
+2025-10-02 21:21:55,376 - apscheduler.scheduler - INFO - Added job "Управление памятью" to job store "default"
+2025-10-02 21:21:55,376 - apscheduler.scheduler - INFO - Scheduler started
+2025-10-02 21:21:55,377 - config.settings - INFO - 🔌 Запуск WebSocket потоков...
+2025-10-02 21:21:56,807 - config.settings - INFO - 🔌 WebSocket поток запущен для BTCUSDT: ['orderbook', 'trades', 'klines']
+2025-10-02 21:21:56,808 - config.settings - INFO - ✅ WebSocket потоки запущены для BTCUSDT
+2025-10-02 21:21:56,809 - config.settings - INFO - 🔄 Первоначальная загрузка данных...
+2025-10-02 21:21:59,911 - config.settings - INFO - 📰 CryptoPanic: 0 новостей
+2025-10-02 21:22:00,325 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:22:05 EEST)" (scheduled at 2025-10-02 21:22:00.317169+03:00)
+2025-10-02 21:22:01,082 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:22:05 EEST)" executed successfully
+2025-10-02 21:22:05,320 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:22:10 EEST)" (scheduled at 2025-10-02 21:22:05.317169+03:00)
+2025-10-02 21:22:05,323 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:22:15 EEST)" (scheduled at 2025-10-02 21:22:05.321645+03:00)
+2025-10-02 21:22:05,324 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:22:15 EEST)" executed successfully
+2025-10-02 21:22:05,548 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:22:10 EEST)" executed successfully
+2025-10-02 21:22:06,015 - config.settings - ERROR - ❌ CryptoCompare API ошибка: 'NoneType' object is not iterable
+2025-10-02 21:22:06,017 - config.settings - INFO - 📊 Итого уникальных новостей: 0
+2025-10-02 21:22:06,018 - config.settings - INFO - ✅ Первоначальная загрузка данных завершена
+2025-10-02 21:22:06,019 - config.settings - INFO - [94m🔄 Главный цикл запущен. Ожидание событий...[0m
+2025-10-02 21:22:10,331 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:22:15 EEST)" (scheduled at 2025-10-02 21:22:10.317169+03:00)
+2025-10-02 21:22:10,564 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:22:15 EEST)" executed successfully
+2025-10-02 21:22:15,319 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:22:20 EEST)" (scheduled at 2025-10-02 21:22:15.317169+03:00)
+2025-10-02 21:22:15,324 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:22:25 EEST)" (scheduled at 2025-10-02 21:22:15.321645+03:00)
+2025-10-02 21:22:15,326 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:22:25 EEST)" executed successfully
+2025-10-02 21:22:15,540 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:22:20 EEST)" executed successfully
+2025-10-02 21:22:20,328 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:22:25 EEST)" (scheduled at 2025-10-02 21:22:20.317169+03:00)
+2025-10-02 21:22:20,557 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:22:25 EEST)" executed successfully
+2025-10-02 21:22:25,323 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:22:30 EEST)" (scheduled at 2025-10-02 21:22:25.317169+03:00)
+2025-10-02 21:22:25,324 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:22:35 EEST)" (scheduled at 2025-10-02 21:22:25.321645+03:00)
+2025-10-02 21:22:25,325 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:22:35 EEST)" executed successfully
+2025-10-02 21:22:25,328 - apscheduler.executors.default - INFO - Running job "Отображение статуса (trigger: interval[0:00:30], next run at: 2025-10-02 21:22:55 EEST)" (scheduled at 2025-10-02 21:22:25.322995+03:00)
+2025-10-02 21:22:25,334 - config.settings - INFO - [94m📊 STATUS: Uptime: 0.0h | Signals: 0 | Updates: 6 | Memory: 5.6% | Bybit: connected[0m
+2025-10-02 21:22:25,335 - apscheduler.executors.default - INFO - Job "Отображение статуса (trigger: interval[0:00:30], next run at: 2025-10-02 21:22:55 EEST)" executed successfully
+2025-10-02 21:22:25,544 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:22:30 EEST)" executed successfully
+2025-10-02 21:22:30,325 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:22:35 EEST)" (scheduled at 2025-10-02 21:22:30.317169+03:00)
+2025-10-02 21:22:30,563 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:22:35 EEST)" executed successfully
+2025-10-02 21:22:35,322 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:22:40 EEST)" (scheduled at 2025-10-02 21:22:35.317169+03:00)
+2025-10-02 21:22:35,326 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:22:45 EEST)" (scheduled at 2025-10-02 21:22:35.321645+03:00)
+2025-10-02 21:22:35,328 - config.settings - WARNING - ⚠️ Ошибка обработки уровня orderbook: 0
+2025-10-02 21:22:35,330 - config.settings - WARNING - ⚠️ Ошибка обработки уровня orderbook: 0
+2025-10-02 21:22:35,331 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:22:45 EEST)" executed successfully
+2025-10-02 21:22:35,554 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:22:40 EEST)" executed successfully
+2025-10-02 21:22:40,325 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:22:45 EEST)" (scheduled at 2025-10-02 21:22:40.317169+03:00)
+2025-10-02 21:22:40,566 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:22:45 EEST)" executed successfully
+2025-10-02 21:22:45,324 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:22:50 EEST)" (scheduled at 2025-10-02 21:22:45.317169+03:00)
+2025-10-02 21:22:45,325 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:22:55 EEST)" (scheduled at 2025-10-02 21:22:45.321645+03:00)
+2025-10-02 21:22:45,326 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:22:55 EEST)" executed successfully
+2025-10-02 21:22:45,557 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:22:50 EEST)" executed successfully
+2025-10-02 21:22:50,331 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:22:55 EEST)" (scheduled at 2025-10-02 21:22:50.317169+03:00)
+2025-10-02 21:22:50,708 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:22:55 EEST)" executed successfully
+2025-10-02 21:22:55,325 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:23:00 EEST)" (scheduled at 2025-10-02 21:22:55.317169+03:00)
+2025-10-02 21:22:55,327 - apscheduler.executors.default - INFO - Running job "Анализ торговых сценариев (trigger: interval[0:01:00], next run at: 2025-10-02 21:23:55 EEST)" (scheduled at 2025-10-02 21:22:55.320010+03:00)
+2025-10-02 21:22:55,354 - config.settings - WARNING - ⚠️ Сценарий version не прошёл валидацию
+2025-10-02 21:22:55,356 - config.settings - WARNING - ⚠️ Сценарий count не прошёл валидацию
+2025-10-02 21:22:55,359 - config.settings - WARNING - ⚠️ Сценарий scenarios не прошёл валидацию
+2025-10-02 21:22:55,360 - config.settings - WARNING - ⚠️ Сценарий trigger_policy_percent не прошёл валидацию
+2025-10-02 21:22:55,363 - config.settings - WARNING - ⚠️ Сценарий meta не прошёл валидацию
+2025-10-02 21:22:55,365 - config.settings - WARNING - ⚠️ Сценарий params_default не прошёл валидацию
+2025-10-02 21:22:55,366 - config.settings - WARNING - ⚠️ Сценарий params_overrides не прошёл валидацию
+2025-10-02 21:22:55,367 - config.settings - WARNING - ⚠️ Сценарий mtf_policy не прошёл валидацию
+2025-10-02 21:22:55,368 - config.settings - WARNING - ⚠️ Сценарий news_policy не прошёл валидацию
+2025-10-02 21:22:55,368 - config.settings - WARNING - ⚠️ Сценарий decision_policy не прошёл валидацию
+2025-10-02 21:22:55,369 - config.settings - WARNING - ⚠️ Сценарий tactics_policy не прошёл валидацию
+2025-10-02 21:22:55,370 - config.settings - WARNING - ⚠️ Сценарий sizing_policy не прошёл валидацию
+2025-10-02 21:22:55,377 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:23:05 EEST)" (scheduled at 2025-10-02 21:22:55.321645+03:00)
+2025-10-02 21:22:55,378 - config.settings - WARNING - ⚠️ Ошибка обработки уровня orderbook: 0
+2025-10-02 21:22:55,379 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:23:05 EEST)" executed successfully
+2025-10-02 21:22:55,380 - apscheduler.executors.default - INFO - Running job "Отображение статуса (trigger: interval[0:00:30], next run at: 2025-10-02 21:23:25 EEST)" (scheduled at 2025-10-02 21:22:55.322995+03:00)
+2025-10-02 21:22:55,385 - config.settings - INFO - [94m📊 STATUS: Uptime: 0.0h | Signals: 0 | Updates: 12 | Memory: 5.5% | Bybit: connected[0m
+2025-10-02 21:22:55,386 - apscheduler.executors.default - INFO - Job "Отображение статуса (trigger: interval[0:00:30], next run at: 2025-10-02 21:23:25 EEST)" executed successfully
+2025-10-02 21:22:55,391 - apscheduler.executors.default - INFO - Running job "Управление памятью (trigger: interval[0:01:00], next run at: 2025-10-02 21:23:55 EEST)" (scheduled at 2025-10-02 21:22:55.324964+03:00)
+2025-10-02 21:22:55,392 - apscheduler.executors.default - INFO - Job "Управление памятью (trigger: interval[0:01:00], next run at: 2025-10-02 21:23:55 EEST)" executed successfully
+2025-10-02 21:22:55,396 - config.settings - INFO - ✅ Загружено 5 торговых сценариев
+2025-10-02 21:22:55,443 - config.settings - INFO - 🎯 Сгенерировано 2 сигналов для BTCUSDT
+2025-10-02 21:22:55,444 - config.settings - INFO - 🎯 Сгенерировано 2 торговых сигналов
+2025-10-02 21:22:55,444 - config.settings - INFO - 📊 Добавлен сигнал для ROI трекинга: BTCUSDT BUY @ $120055.4
+2025-10-02 21:22:55,639 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:23:00 EEST)" executed successfully
+2025-10-02 21:22:55,659 - config.settings - INFO - 📊 Добавлен сигнал для ROI трекинга: BTCUSDT BUY @ $120055.4
+2025-10-02 21:22:55,881 - config.settings - INFO - [92m🎯 SIGNAL[0m: BTCUSDT BUY @ $120055.4 | TP1: $120351.29 | RR: 1.5x | Confidence: 0.97
+2025-10-02 21:22:55,882 - config.settings - INFO - [92m🎯 SIGNAL[0m: BTCUSDT BUY @ $120055.4 | TP1: $120351.29 | RR: 1.5x | Confidence: 0.96
+2025-10-02 21:22:55,882 - apscheduler.executors.default - INFO - Job "Анализ торговых сценариев (trigger: interval[0:01:00], next run at: 2025-10-02 21:23:55 EEST)" executed successfully
+2025-10-02 21:23:00,319 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:23:05 EEST)" (scheduled at 2025-10-02 21:23:00.317169+03:00)
+2025-10-02 21:23:00,550 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:23:05 EEST)" executed successfully
+2025-10-02 21:23:05,323 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:23:10 EEST)" (scheduled at 2025-10-02 21:23:05.317169+03:00)
+2025-10-02 21:23:05,325 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:23:15 EEST)" (scheduled at 2025-10-02 21:23:05.321645+03:00)
+2025-10-02 21:23:05,327 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:23:15 EEST)" executed successfully
+2025-10-02 21:23:05,550 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:23:10 EEST)" executed successfully
+2025-10-02 21:23:10,330 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:23:15 EEST)" (scheduled at 2025-10-02 21:23:10.317169+03:00)
+2025-10-02 21:23:10,566 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:23:15 EEST)" executed successfully
+2025-10-02 21:23:15,322 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:23:20 EEST)" (scheduled at 2025-10-02 21:23:15.317169+03:00)
+2025-10-02 21:23:15,324 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:23:25 EEST)" (scheduled at 2025-10-02 21:23:15.321645+03:00)
+2025-10-02 21:23:15,326 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:23:25 EEST)" executed successfully
+2025-10-02 21:23:15,557 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:23:20 EEST)" executed successfully
+2025-10-02 21:23:20,319 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:23:25 EEST)" (scheduled at 2025-10-02 21:23:20.317169+03:00)
+2025-10-02 21:23:20,552 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:23:25 EEST)" executed successfully
+2025-10-02 21:23:25,320 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:23:30 EEST)" (scheduled at 2025-10-02 21:23:25.317169+03:00)
+2025-10-02 21:23:25,327 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:23:35 EEST)" (scheduled at 2025-10-02 21:23:25.321645+03:00)
+2025-10-02 21:23:25,329 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:23:35 EEST)" executed successfully
+2025-10-02 21:23:25,332 - apscheduler.executors.default - INFO - Running job "Отображение статуса (trigger: interval[0:00:30], next run at: 2025-10-02 21:23:55 EEST)" (scheduled at 2025-10-02 21:23:25.322995+03:00)
+2025-10-02 21:23:25,342 - config.settings - INFO - [94m📊 STATUS: Uptime: 0.0h | Signals: 2 | Updates: 18 | Memory: 5.7% | Active ROI: 2 (avg: [91m-1.00%[0m) | Bybit: connected[0m
+2025-10-02 21:23:25,344 - apscheduler.executors.default - INFO - Job "Отображение статуса (trigger: interval[0:00:30], next run at: 2025-10-02 21:23:55 EEST)" executed successfully
+2025-10-02 21:23:25,679 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:23:30 EEST)" executed successfully
+2025-10-02 21:23:30,326 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:23:35 EEST)" (scheduled at 2025-10-02 21:23:30.317169+03:00)
+2025-10-02 21:23:30,555 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:23:35 EEST)" executed successfully
+2025-10-02 21:23:35,327 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:23:40 EEST)" (scheduled at 2025-10-02 21:23:35.317169+03:00)
+2025-10-02 21:23:35,330 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:23:45 EEST)" (scheduled at 2025-10-02 21:23:35.321645+03:00)
+2025-10-02 21:23:35,332 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:23:45 EEST)" executed successfully
+2025-10-02 21:23:35,557 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:23:40 EEST)" executed successfully
+2025-10-02 21:23:40,326 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:23:45 EEST)" (scheduled at 2025-10-02 21:23:40.317169+03:00)
+2025-10-02 21:23:40,553 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:23:45 EEST)" executed successfully
+2025-10-02 21:23:45,329 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:23:50 EEST)" (scheduled at 2025-10-02 21:23:45.317169+03:00)
+2025-10-02 21:23:45,330 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:23:55 EEST)" (scheduled at 2025-10-02 21:23:45.321645+03:00)
+2025-10-02 21:23:45,331 - config.settings - WARNING - ⚠️ Ошибка обработки уровня orderbook: 0
+2025-10-02 21:23:45,332 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:23:55 EEST)" executed successfully
+2025-10-02 21:23:45,560 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:23:50 EEST)" executed successfully
+2025-10-02 21:23:50,326 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:23:55 EEST)" (scheduled at 2025-10-02 21:23:50.317169+03:00)
+2025-10-02 21:23:50,553 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:23:55 EEST)" executed successfully
+2025-10-02 21:23:55,326 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:24:00 EEST)" (scheduled at 2025-10-02 21:23:55.317169+03:00)
+2025-10-02 21:23:55,329 - apscheduler.executors.default - INFO - Running job "Анализ торговых сценариев (trigger: interval[0:01:00], next run at: 2025-10-02 21:24:55 EEST)" (scheduled at 2025-10-02 21:23:55.320010+03:00)
+2025-10-02 21:23:55,354 - config.settings - WARNING - ⚠️ Сценарий version не прошёл валидацию
+2025-10-02 21:23:55,359 - config.settings - WARNING - ⚠️ Сценарий count не прошёл валидацию
+2025-10-02 21:23:55,364 - config.settings - WARNING - ⚠️ Сценарий scenarios не прошёл валидацию
+2025-10-02 21:23:55,366 - config.settings - WARNING - ⚠️ Сценарий trigger_policy_percent не прошёл валидацию
+2025-10-02 21:23:55,369 - config.settings - WARNING - ⚠️ Сценарий meta не прошёл валидацию
+2025-10-02 21:23:55,369 - config.settings - WARNING - ⚠️ Сценарий params_default не прошёл валидацию
+2025-10-02 21:23:55,370 - config.settings - WARNING - ⚠️ Сценарий params_overrides не прошёл валидацию
+2025-10-02 21:23:55,371 - config.settings - WARNING - ⚠️ Сценарий mtf_policy не прошёл валидацию
+2025-10-02 21:23:55,372 - config.settings - WARNING - ⚠️ Сценарий news_policy не прошёл валидацию
+2025-10-02 21:23:55,372 - config.settings - WARNING - ⚠️ Сценарий decision_policy не прошёл валидацию
+2025-10-02 21:23:55,373 - config.settings - WARNING - ⚠️ Сценарий tactics_policy не прошёл валидацию
+2025-10-02 21:23:55,374 - config.settings - WARNING - ⚠️ Сценарий sizing_policy не прошёл валидацию
+2025-10-02 21:23:55,378 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:24:05 EEST)" (scheduled at 2025-10-02 21:23:55.321645+03:00)
+2025-10-02 21:23:55,380 - config.settings - WARNING - ⚠️ Ошибка обработки уровня orderbook: 0
+2025-10-02 21:23:55,381 - config.settings - WARNING - ⚠️ Ошибка обработки уровня orderbook: 0
+2025-10-02 21:23:55,382 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:24:05 EEST)" executed successfully
+2025-10-02 21:23:55,382 - apscheduler.executors.default - INFO - Running job "Отображение статуса (trigger: interval[0:00:30], next run at: 2025-10-02 21:24:25 EEST)" (scheduled at 2025-10-02 21:23:55.322995+03:00)
+2025-10-02 21:23:55,388 - config.settings - INFO - [94m📊 STATUS: Uptime: 0.0h | Signals: 2 | Updates: 24 | Memory: 5.7% | Active ROI: 2 (avg: [91m-1.00%[0m) | Bybit: connected[0m
+2025-10-02 21:23:55,388 - apscheduler.executors.default - INFO - Job "Отображение статуса (trigger: interval[0:00:30], next run at: 2025-10-02 21:24:25 EEST)" executed successfully
+2025-10-02 21:23:55,389 - apscheduler.executors.default - INFO - Running job "Управление памятью (trigger: interval[0:01:00], next run at: 2025-10-02 21:24:55 EEST)" (scheduled at 2025-10-02 21:23:55.324964+03:00)
+2025-10-02 21:23:55,389 - apscheduler.executors.default - INFO - Job "Управление памятью (trigger: interval[0:01:00], next run at: 2025-10-02 21:24:55 EEST)" executed successfully
+2025-10-02 21:23:55,394 - config.settings - INFO - ✅ Загружено 5 торговых сценариев
+2025-10-02 21:23:55,400 - config.settings - WARNING - [95m🛑 VETO АКТИВИРОВАНО[0m для BTCUSDT: orderbook_manipulation | Risk: 1.00 | Stability: 0.99
+2025-10-02 21:23:55,400 - config.settings - INFO - 🛑 Генерация сигналов заблокирована veto системой для BTCUSDT
+2025-10-02 21:23:55,401 - config.settings - INFO - 🎯 Сгенерировано 1 торговых сигналов
+2025-10-02 21:23:55,529 - config.settings - WARNING - [95m🛑 VETO[0m: BTCUSDT - VETO: Подозрение на манипуляцию orderbook: дисбаланс 1045.0x
+2025-10-02 21:23:55,530 - apscheduler.executors.default - INFO - Job "Анализ торговых сценариев (trigger: interval[0:01:00], next run at: 2025-10-02 21:24:55 EEST)" executed successfully
+2025-10-02 21:23:55,616 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:24:00 EEST)" executed successfully
+2025-10-02 21:24:00,324 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:24:05 EEST)" (scheduled at 2025-10-02 21:24:00.317169+03:00)
+2025-10-02 21:24:00,548 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:24:05 EEST)" executed successfully
+2025-10-02 21:24:05,324 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:24:10 EEST)" (scheduled at 2025-10-02 21:24:05.317169+03:00)
+2025-10-02 21:24:05,326 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:24:15 EEST)" (scheduled at 2025-10-02 21:24:05.321645+03:00)
+2025-10-02 21:24:05,328 - config.settings - WARNING - ⚠️ Ошибка обработки уровня orderbook: 0
+2025-10-02 21:24:05,329 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:24:15 EEST)" executed successfully
+2025-10-02 21:24:05,897 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:24:10 EEST)" executed successfully
+2025-10-02 21:24:10,320 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:24:15 EEST)" (scheduled at 2025-10-02 21:24:10.317169+03:00)
+2025-10-02 21:24:10,552 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:24:15 EEST)" executed successfully
+2025-10-02 21:24:15,332 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:24:20 EEST)" (scheduled at 2025-10-02 21:24:15.317169+03:00)
+2025-10-02 21:24:15,334 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:24:25 EEST)" (scheduled at 2025-10-02 21:24:15.321645+03:00)
+2025-10-02 21:24:15,336 - config.settings - WARNING - ⚠️ Ошибка обработки уровня orderbook: 0
+2025-10-02 21:24:15,337 - config.settings - WARNING - ⚠️ Ошибка обработки уровня orderbook: 0
+2025-10-02 21:24:15,338 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:24:25 EEST)" executed successfully
+2025-10-02 21:24:15,567 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:24:20 EEST)" executed successfully
+2025-10-02 21:24:20,325 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:24:25 EEST)" (scheduled at 2025-10-02 21:24:20.317169+03:00)
+2025-10-02 21:24:20,721 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:24:25 EEST)" executed successfully
+2025-10-02 21:24:25,321 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:24:30 EEST)" (scheduled at 2025-10-02 21:24:25.317169+03:00)
+2025-10-02 21:24:25,326 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:24:35 EEST)" (scheduled at 2025-10-02 21:24:25.321645+03:00)
+2025-10-02 21:24:25,327 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:24:35 EEST)" executed successfully
+2025-10-02 21:24:25,330 - apscheduler.executors.default - INFO - Running job "Отображение статуса (trigger: interval[0:00:30], next run at: 2025-10-02 21:24:55 EEST)" (scheduled at 2025-10-02 21:24:25.322995+03:00)
+2025-10-02 21:24:25,340 - config.settings - INFO - [94m📊 STATUS: Uptime: 0.0h | Signals: 3 | Updates: 30 | Memory: 5.7% | Active ROI: 2 (avg: [92m+2.00%[0m) | Bybit: connected[0m
+2025-10-02 21:24:25,342 - apscheduler.executors.default - INFO - Job "Отображение статуса (trigger: interval[0:00:30], next run at: 2025-10-02 21:24:55 EEST)" executed successfully
+2025-10-02 21:24:25,554 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:24:30 EEST)" executed successfully
+2025-10-02 21:24:30,323 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:24:35 EEST)" (scheduled at 2025-10-02 21:24:30.317169+03:00)
+2025-10-02 21:24:30,863 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:24:35 EEST)" executed successfully
+2025-10-02 21:24:35,318 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:24:40 EEST)" (scheduled at 2025-10-02 21:24:35.317169+03:00)
+2025-10-02 21:24:35,327 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:24:45 EEST)" (scheduled at 2025-10-02 21:24:35.321645+03:00)
+2025-10-02 21:24:35,334 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:24:45 EEST)" executed successfully
+2025-10-02 21:24:35,703 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:24:40 EEST)" executed successfully
+2025-10-02 21:24:40,320 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:24:45 EEST)" (scheduled at 2025-10-02 21:24:40.317169+03:00)
+2025-10-02 21:24:40,552 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:24:45 EEST)" executed successfully
+2025-10-02 21:24:45,323 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:24:50 EEST)" (scheduled at 2025-10-02 21:24:45.317169+03:00)
+2025-10-02 21:24:45,324 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:24:55 EEST)" (scheduled at 2025-10-02 21:24:45.321645+03:00)
+2025-10-02 21:24:45,325 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:24:55 EEST)" executed successfully
+2025-10-02 21:24:45,560 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:24:50 EEST)" executed successfully
+2025-10-02 21:24:50,323 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:24:55 EEST)" (scheduled at 2025-10-02 21:24:50.317169+03:00)
+2025-10-02 21:24:50,557 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:24:55 EEST)" executed successfully
+2025-10-02 21:24:55,333 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:25:00 EEST)" (scheduled at 2025-10-02 21:24:55.317169+03:00)
+2025-10-02 21:24:55,337 - apscheduler.executors.default - INFO - Running job "Анализ торговых сценариев (trigger: interval[0:01:00], next run at: 2025-10-02 21:25:55 EEST)" (scheduled at 2025-10-02 21:24:55.320010+03:00)
+2025-10-02 21:24:55,371 - config.settings - WARNING - ⚠️ Сценарий version не прошёл валидацию
+2025-10-02 21:24:55,374 - config.settings - WARNING - ⚠️ Сценарий count не прошёл валидацию
+2025-10-02 21:24:55,375 - config.settings - WARNING - ⚠️ Сценарий scenarios не прошёл валидацию
+2025-10-02 21:24:55,375 - config.settings - WARNING - ⚠️ Сценарий trigger_policy_percent не прошёл валидацию
+2025-10-02 21:24:55,376 - config.settings - WARNING - ⚠️ Сценарий meta не прошёл валидацию
+2025-10-02 21:24:55,377 - config.settings - WARNING - ⚠️ Сценарий params_default не прошёл валидацию
+2025-10-02 21:24:55,378 - config.settings - WARNING - ⚠️ Сценарий params_overrides не прошёл валидацию
+2025-10-02 21:24:55,378 - config.settings - WARNING - ⚠️ Сценарий mtf_policy не прошёл валидацию
+2025-10-02 21:24:55,379 - config.settings - WARNING - ⚠️ Сценарий news_policy не прошёл валидацию
+2025-10-02 21:24:55,380 - config.settings - WARNING - ⚠️ Сценарий decision_policy не прошёл валидацию
+2025-10-02 21:24:55,381 - config.settings - WARNING - ⚠️ Сценарий tactics_policy не прошёл валидацию
+2025-10-02 21:24:55,381 - config.settings - WARNING - ⚠️ Сценарий sizing_policy не прошёл валидацию
+2025-10-02 21:24:55,394 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:25:05 EEST)" (scheduled at 2025-10-02 21:24:55.321645+03:00)
+2025-10-02 21:24:55,398 - config.settings - WARNING - ⚠️ Ошибка обработки уровня orderbook: 0
+2025-10-02 21:24:55,399 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:25:05 EEST)" executed successfully
+2025-10-02 21:24:55,401 - apscheduler.executors.default - INFO - Running job "Отображение статуса (trigger: interval[0:00:30], next run at: 2025-10-02 21:25:25 EEST)" (scheduled at 2025-10-02 21:24:55.322995+03:00)
+2025-10-02 21:24:55,407 - config.settings - INFO - [94m📊 STATUS: Uptime: 0.1h | Signals: 3 | Updates: 36 | Memory: 5.7% | Active ROI: 2 (avg: [92m+9.00%[0m) | Bybit: connected[0m
+2025-10-02 21:24:55,408 - apscheduler.executors.default - INFO - Job "Отображение статуса (trigger: interval[0:00:30], next run at: 2025-10-02 21:25:25 EEST)" executed successfully
+2025-10-02 21:24:55,409 - apscheduler.executors.default - INFO - Running job "Управление памятью (trigger: interval[0:01:00], next run at: 2025-10-02 21:25:55 EEST)" (scheduled at 2025-10-02 21:24:55.324964+03:00)
+2025-10-02 21:24:55,409 - apscheduler.executors.default - INFO - Job "Управление памятью (trigger: interval[0:01:00], next run at: 2025-10-02 21:25:55 EEST)" executed successfully
+2025-10-02 21:24:55,417 - config.settings - INFO - ✅ Загружено 5 торговых сценариев
+2025-10-02 21:24:55,418 - config.settings - WARNING - [95m🛑 VETO АКТИВИРОВАНО[0m для BTCUSDT: orderbook_manipulation | Risk: 0.00 | Stability: 0.99
+2025-10-02 21:24:55,418 - config.settings - INFO - 🛑 Генерация сигналов заблокирована veto системой для BTCUSDT
+2025-10-02 21:24:55,418 - config.settings - INFO - 🎯 Сгенерировано 1 торговых сигналов
+2025-10-02 21:24:55,529 - config.settings - WARNING - [95m🛑 VETO[0m: BTCUSDT - VETO: Подозрение на манипуляцию orderbook: дисбаланс 1045.0x
+2025-10-02 21:24:55,529 - apscheduler.executors.default - INFO - Job "Анализ торговых сценариев (trigger: interval[0:01:00], next run at: 2025-10-02 21:25:55 EEST)" executed successfully
+2025-10-02 21:24:55,631 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:25:00 EEST)" executed successfully
+2025-10-02 21:25:00,324 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:25:05 EEST)" (scheduled at 2025-10-02 21:25:00.317169+03:00)
+2025-10-02 21:25:00,871 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:25:05 EEST)" executed successfully
+2025-10-02 21:25:05,319 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:25:10 EEST)" (scheduled at 2025-10-02 21:25:05.317169+03:00)
+2025-10-02 21:25:05,336 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:25:15 EEST)" (scheduled at 2025-10-02 21:25:05.321645+03:00)
+2025-10-02 21:25:05,338 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:25:15 EEST)" executed successfully
+2025-10-02 21:25:05,559 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:25:10 EEST)" executed successfully
+2025-10-02 21:25:10,324 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:25:15 EEST)" (scheduled at 2025-10-02 21:25:10.317169+03:00)
+2025-10-02 21:25:10,620 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:25:15 EEST)" executed successfully
+2025-10-02 21:25:15,323 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:25:20 EEST)" (scheduled at 2025-10-02 21:25:15.317169+03:00)
+2025-10-02 21:25:15,330 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:25:25 EEST)" (scheduled at 2025-10-02 21:25:15.321645+03:00)
+2025-10-02 21:25:15,332 - config.settings - WARNING - ⚠️ Ошибка обработки уровня orderbook: 0
+2025-10-02 21:25:15,335 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:25:25 EEST)" executed successfully
+2025-10-02 21:25:15,724 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:25:20 EEST)" executed successfully
+2025-10-02 21:25:20,322 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:25:25 EEST)" (scheduled at 2025-10-02 21:25:20.317169+03:00)
+2025-10-02 21:25:20,717 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:25:25 EEST)" executed successfully
+2025-10-02 21:25:25,324 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:25:30 EEST)" (scheduled at 2025-10-02 21:25:25.317169+03:00)
+2025-10-02 21:25:25,326 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:25:35 EEST)" (scheduled at 2025-10-02 21:25:25.321645+03:00)
+2025-10-02 21:25:25,328 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:25:35 EEST)" executed successfully
+2025-10-02 21:25:25,330 - apscheduler.executors.default - INFO - Running job "Отображение статуса (trigger: interval[0:00:30], next run at: 2025-10-02 21:25:55 EEST)" (scheduled at 2025-10-02 21:25:25.322995+03:00)
+2025-10-02 21:25:25,343 - config.settings - INFO - [94m📊 STATUS: Uptime: 0.1h | Signals: 4 | Updates: 42 | Memory: 5.6% | Active ROI: 2 (avg: [92m+10.00%[0m) | Bybit: connected[0m
+2025-10-02 21:25:25,345 - apscheduler.executors.default - INFO - Job "Отображение статуса (trigger: interval[0:00:30], next run at: 2025-10-02 21:25:55 EEST)" executed successfully
+2025-10-02 21:25:25,659 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:25:30 EEST)" executed successfully
+2025-10-02 21:25:30,323 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:25:35 EEST)" (scheduled at 2025-10-02 21:25:30.317169+03:00)
+2025-10-02 21:25:30,875 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:25:35 EEST)" executed successfully
+2025-10-02 21:25:35,319 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:25:40 EEST)" (scheduled at 2025-10-02 21:25:35.317169+03:00)
+2025-10-02 21:25:35,326 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:25:45 EEST)" (scheduled at 2025-10-02 21:25:35.321645+03:00)
+2025-10-02 21:25:35,327 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:25:45 EEST)" executed successfully
+2025-10-02 21:25:35,554 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:25:40 EEST)" executed successfully
+2025-10-02 21:25:40,325 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:25:45 EEST)" (scheduled at 2025-10-02 21:25:40.317169+03:00)
+2025-10-02 21:25:40,563 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:25:45 EEST)" executed successfully
+2025-10-02 21:25:45,320 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:25:50 EEST)" (scheduled at 2025-10-02 21:25:45.317169+03:00)
+2025-10-02 21:25:45,331 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:25:55 EEST)" (scheduled at 2025-10-02 21:25:45.321645+03:00)
+2025-10-02 21:25:45,333 - config.settings - WARNING - ⚠️ Ошибка обработки уровня orderbook: 0
+2025-10-02 21:25:45,335 - config.settings - WARNING - ⚠️ Ошибка обработки уровня orderbook: 0
+2025-10-02 21:25:45,337 - config.settings - WARNING - ⚠️ Ошибка обработки уровня orderbook: 0
+2025-10-02 21:25:45,338 - config.settings - WARNING - ⚠️ Ошибка обработки уровня orderbook: 0
+2025-10-02 21:25:45,340 - config.settings - WARNING - ⚠️ Ошибка обработки уровня orderbook: 0
+2025-10-02 21:25:45,341 - config.settings - WARNING - ⚠️ Ошибка обработки уровня orderbook: 0
+2025-10-02 21:25:45,343 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:25:55 EEST)" executed successfully
+2025-10-02 21:25:45,547 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:25:50 EEST)" executed successfully
+2025-10-02 21:25:50,320 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:25:55 EEST)" (scheduled at 2025-10-02 21:25:50.317169+03:00)
+2025-10-02 21:25:50,555 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:25:55 EEST)" executed successfully
+2025-10-02 21:25:55,324 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:26:00 EEST)" (scheduled at 2025-10-02 21:25:55.317169+03:00)
+2025-10-02 21:25:55,328 - apscheduler.executors.default - INFO - Running job "Анализ торговых сценариев (trigger: interval[0:01:00], next run at: 2025-10-02 21:26:55 EEST)" (scheduled at 2025-10-02 21:25:55.320010+03:00)
+2025-10-02 21:25:55,367 - config.settings - WARNING - ⚠️ Сценарий version не прошёл валидацию
+2025-10-02 21:25:55,371 - config.settings - WARNING - ⚠️ Сценарий count не прошёл валидацию
+2025-10-02 21:25:55,372 - config.settings - WARNING - ⚠️ Сценарий scenarios не прошёл валидацию
+2025-10-02 21:25:55,373 - config.settings - WARNING - ⚠️ Сценарий trigger_policy_percent не прошёл валидацию
+2025-10-02 21:25:55,374 - config.settings - WARNING - ⚠️ Сценарий meta не прошёл валидацию
+2025-10-02 21:25:55,375 - config.settings - WARNING - ⚠️ Сценарий params_default не прошёл валидацию
+2025-10-02 21:25:55,377 - config.settings - WARNING - ⚠️ Сценарий params_overrides не прошёл валидацию
+2025-10-02 21:25:55,378 - config.settings - WARNING - ⚠️ Сценарий mtf_policy не прошёл валидацию
+2025-10-02 21:25:55,380 - config.settings - WARNING - ⚠️ Сценарий news_policy не прошёл валидацию
+2025-10-02 21:25:55,381 - config.settings - WARNING - ⚠️ Сценарий decision_policy не прошёл валидацию
+2025-10-02 21:25:55,383 - config.settings - WARNING - ⚠️ Сценарий tactics_policy не прошёл валидацию
+2025-10-02 21:25:55,385 - config.settings - WARNING - ⚠️ Сценарий sizing_policy не прошёл валидацию
+2025-10-02 21:25:55,392 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:26:05 EEST)" (scheduled at 2025-10-02 21:25:55.321645+03:00)
+2025-10-02 21:25:55,393 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:26:05 EEST)" executed successfully
+2025-10-02 21:25:55,394 - apscheduler.executors.default - INFO - Running job "Отображение статуса (trigger: interval[0:00:30], next run at: 2025-10-02 21:26:25 EEST)" (scheduled at 2025-10-02 21:25:55.322995+03:00)
+2025-10-02 21:25:55,403 - config.settings - INFO - [94m📊 STATUS: Uptime: 0.1h | Signals: 4 | Updates: 48 | Memory: 5.6% | Active ROI: 2 (avg: [92m+8.00%[0m) | Bybit: connected[0m
+2025-10-02 21:25:55,404 - apscheduler.executors.default - INFO - Job "Отображение статуса (trigger: interval[0:00:30], next run at: 2025-10-02 21:26:25 EEST)" executed successfully
+2025-10-02 21:25:55,407 - apscheduler.executors.default - INFO - Running job "Управление памятью (trigger: interval[0:01:00], next run at: 2025-10-02 21:26:55 EEST)" (scheduled at 2025-10-02 21:25:55.324964+03:00)
+2025-10-02 21:25:55,410 - apscheduler.executors.default - INFO - Job "Управление памятью (trigger: interval[0:01:00], next run at: 2025-10-02 21:26:55 EEST)" executed successfully
+2025-10-02 21:25:55,413 - config.settings - INFO - ✅ Загружено 5 торговых сценариев
+2025-10-02 21:25:55,417 - config.settings - WARNING - [95m🛑 VETO АКТИВИРОВАНО[0m для BTCUSDT: orderbook_manipulation | Risk: 1.00 | Stability: 0.99
+2025-10-02 21:25:55,418 - config.settings - INFO - 🛑 Генерация сигналов заблокирована veto системой для BTCUSDT
+2025-10-02 21:25:55,420 - config.settings - INFO - 🎯 Сгенерировано 1 торговых сигналов
+2025-10-02 21:25:55,563 - config.settings - WARNING - [95m🛑 VETO[0m: BTCUSDT - VETO: Подозрение на манипуляцию orderbook: дисбаланс 1547.0x
+2025-10-02 21:25:55,563 - apscheduler.executors.default - INFO - Job "Анализ торговых сценариев (trigger: interval[0:01:00], next run at: 2025-10-02 21:26:55 EEST)" executed successfully
+2025-10-02 21:25:55,640 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:26:00 EEST)" executed successfully
+2025-10-02 21:26:00,319 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:26:05 EEST)" (scheduled at 2025-10-02 21:26:00.317169+03:00)
+2025-10-02 21:26:00,856 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:26:05 EEST)" executed successfully
+2025-10-02 21:26:05,321 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:26:10 EEST)" (scheduled at 2025-10-02 21:26:05.317169+03:00)
+2025-10-02 21:26:05,332 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:26:15 EEST)" (scheduled at 2025-10-02 21:26:05.321645+03:00)
+2025-10-02 21:26:05,334 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:26:15 EEST)" executed successfully
+2025-10-02 21:26:05,552 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:26:10 EEST)" executed successfully
+2025-10-02 21:26:10,323 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:26:15 EEST)" (scheduled at 2025-10-02 21:26:10.317169+03:00)
+2025-10-02 21:26:10,563 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:26:15 EEST)" executed successfully
+2025-10-02 21:26:15,322 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:26:20 EEST)" (scheduled at 2025-10-02 21:26:15.317169+03:00)
+2025-10-02 21:26:15,324 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:26:25 EEST)" (scheduled at 2025-10-02 21:26:15.321645+03:00)
+2025-10-02 21:26:15,325 - config.settings - WARNING - ⚠️ Ошибка обработки уровня orderbook: 0
+2025-10-02 21:26:15,326 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:26:25 EEST)" executed successfully
+2025-10-02 21:26:15,720 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:26:20 EEST)" executed successfully
+2025-10-02 21:26:20,327 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:26:25 EEST)" (scheduled at 2025-10-02 21:26:20.317169+03:00)
+2025-10-02 21:26:20,668 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:26:25 EEST)" executed successfully
+2025-10-02 21:26:25,323 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:26:30 EEST)" (scheduled at 2025-10-02 21:26:25.317169+03:00)
+2025-10-02 21:26:25,327 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:26:35 EEST)" (scheduled at 2025-10-02 21:26:25.321645+03:00)
+2025-10-02 21:26:25,329 - config.settings - WARNING - ⚠️ Ошибка обработки уровня orderbook: 0
+2025-10-02 21:26:25,330 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:26:35 EEST)" executed successfully
+2025-10-02 21:26:25,338 - apscheduler.executors.default - INFO - Running job "Отображение статуса (trigger: interval[0:00:30], next run at: 2025-10-02 21:26:55 EEST)" (scheduled at 2025-10-02 21:26:25.322995+03:00)
+2025-10-02 21:26:25,350 - config.settings - INFO - [94m📊 STATUS: Uptime: 0.1h | Signals: 5 | Updates: 54 | Memory: 5.7% | Active ROI: 2 (avg: [91m-1.00%[0m) | Bybit: connected[0m
+2025-10-02 21:26:25,351 - apscheduler.executors.default - INFO - Job "Отображение статуса (trigger: interval[0:00:30], next run at: 2025-10-02 21:26:55 EEST)" executed successfully
+2025-10-02 21:26:25,558 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:26:30 EEST)" executed successfully
+2025-10-02 21:26:30,325 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:26:35 EEST)" (scheduled at 2025-10-02 21:26:30.317169+03:00)
+2025-10-02 21:26:30,549 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:26:35 EEST)" executed successfully
+2025-10-02 21:26:35,328 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:26:40 EEST)" (scheduled at 2025-10-02 21:26:35.317169+03:00)
+2025-10-02 21:26:35,332 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:26:45 EEST)" (scheduled at 2025-10-02 21:26:35.321645+03:00)
+2025-10-02 21:26:35,337 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:26:45 EEST)" executed successfully
+2025-10-02 21:26:35,577 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:26:40 EEST)" executed successfully
+2025-10-02 21:26:40,202 - config.settings - INFO - [93m⚡ Получен сигнал SIGINT, инициируем завершение...[0m
+2025-10-02 21:26:40,321 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:26:45 EEST)" (scheduled at 2025-10-02 21:26:40.317169+03:00)
+2025-10-02 21:26:40,549 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:26:45 EEST)" executed successfully
+2025-10-02 21:26:45,322 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:26:50 EEST)" (scheduled at 2025-10-02 21:26:45.317169+03:00)
+2025-10-02 21:26:45,325 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:26:55 EEST)" (scheduled at 2025-10-02 21:26:45.321645+03:00)
+2025-10-02 21:26:45,326 - config.settings - WARNING - ⚠️ Ошибка обработки уровня orderbook: 0
+2025-10-02 21:26:45,328 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:26:55 EEST)" executed successfully
+2025-10-02 21:26:45,553 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:26:50 EEST)" executed successfully
+2025-10-02 21:26:50,321 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:26:55 EEST)" (scheduled at 2025-10-02 21:26:50.317169+03:00)
+2025-10-02 21:26:50,613 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:26:55 EEST)" executed successfully
+2025-10-02 21:26:55,321 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:27:00 EEST)" (scheduled at 2025-10-02 21:26:55.317169+03:00)
+2025-10-02 21:26:55,322 - apscheduler.executors.default - INFO - Running job "Обновление новостных данных (trigger: interval[0:05:00], next run at: 2025-10-02 21:31:55 EEST)" (scheduled at 2025-10-02 21:26:55.318642+03:00)
+2025-10-02 21:26:55,324 - apscheduler.executors.default - INFO - Running job "Анализ торговых сценариев (trigger: interval[0:01:00], next run at: 2025-10-02 21:27:55 EEST)" (scheduled at 2025-10-02 21:26:55.320010+03:00)
+2025-10-02 21:26:55,340 - config.settings - WARNING - ⚠️ Сценарий version не прошёл валидацию
+2025-10-02 21:26:55,340 - config.settings - WARNING - ⚠️ Сценарий count не прошёл валидацию
+2025-10-02 21:26:55,341 - config.settings - WARNING - ⚠️ Сценарий scenarios не прошёл валидацию
+2025-10-02 21:26:55,342 - config.settings - WARNING - ⚠️ Сценарий trigger_policy_percent не прошёл валидацию
+2025-10-02 21:26:55,342 - config.settings - WARNING - ⚠️ Сценарий meta не прошёл валидацию
+2025-10-02 21:26:55,343 - config.settings - WARNING - ⚠️ Сценарий params_default не прошёл валидацию
+2025-10-02 21:26:55,344 - config.settings - WARNING - ⚠️ Сценарий params_overrides не прошёл валидацию
+2025-10-02 21:26:55,344 - config.settings - WARNING - ⚠️ Сценарий mtf_policy не прошёл валидацию
+2025-10-02 21:26:55,345 - config.settings - WARNING - ⚠️ Сценарий news_policy не прошёл валидацию
+2025-10-02 21:26:55,345 - config.settings - WARNING - ⚠️ Сценарий decision_policy не прошёл валидацию
+2025-10-02 21:26:55,346 - config.settings - WARNING - ⚠️ Сценарий tactics_policy не прошёл валидацию
+2025-10-02 21:26:55,347 - config.settings - WARNING - ⚠️ Сценарий sizing_policy не прошёл валидацию
+2025-10-02 21:26:55,361 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:27:05 EEST)" (scheduled at 2025-10-02 21:26:55.321645+03:00)
+2025-10-02 21:26:55,365 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:27:05 EEST)" executed successfully
+2025-10-02 21:26:55,366 - apscheduler.executors.default - INFO - Running job "Отображение статуса (trigger: interval[0:00:30], next run at: 2025-10-02 21:27:25 EEST)" (scheduled at 2025-10-02 21:26:55.322995+03:00)
+2025-10-02 21:26:55,373 - config.settings - INFO - [94m📊 STATUS: Uptime: 0.1h | Signals: 5 | Updates: 60 | Memory: 5.6% | Active ROI: 2 (avg: N/A) | Bybit: connected[0m
+2025-10-02 21:26:55,374 - apscheduler.executors.default - INFO - Job "Отображение статуса (trigger: interval[0:00:30], next run at: 2025-10-02 21:27:25 EEST)" executed successfully
+2025-10-02 21:26:55,375 - apscheduler.executors.default - INFO - Running job "Управление памятью (trigger: interval[0:01:00], next run at: 2025-10-02 21:27:55 EEST)" (scheduled at 2025-10-02 21:26:55.324964+03:00)
+2025-10-02 21:26:55,376 - apscheduler.executors.default - INFO - Job "Управление памятью (trigger: interval[0:01:00], next run at: 2025-10-02 21:27:55 EEST)" executed successfully
+2025-10-02 21:26:55,379 - config.settings - INFO - ✅ Загружено 5 торговых сценариев
+2025-10-02 21:26:55,380 - config.settings - ERROR - ❌ Ошибка расчёта market stability: name 'np' is not defined
+2025-10-02 21:26:55,381 - config.settings - ERROR - ❌ Ошибка расчёта market stability: name 'np' is not defined
+2025-10-02 21:26:55,381 - config.settings - WARNING - [95m🛑 VETO АКТИВИРОВАНО[0m для BTCUSDT: orderbook_manipulation | Risk: 0.00 | Stability: 0.50
+2025-10-02 21:26:55,382 - config.settings - INFO - 🛑 Генерация сигналов заблокирована veto системой для BTCUSDT
+2025-10-02 21:26:55,383 - config.settings - INFO - 🎯 Сгенерировано 1 торговых сигналов
+2025-10-02 21:26:55,602 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:27:00 EEST)" executed successfully
+2025-10-02 21:26:55,636 - config.settings - WARNING - [95m🛑 VETO[0m: BTCUSDT - VETO: Подозрение на манипуляцию orderbook: дисбаланс 1547.0x
+2025-10-02 21:26:55,637 - apscheduler.executors.default - INFO - Job "Анализ торговых сценариев (trigger: interval[0:01:00], next run at: 2025-10-02 21:27:55 EEST)" executed successfully
+2025-10-02 21:26:55,705 - config.settings - INFO - 📰 CryptoPanic: 0 новостей
+2025-10-02 21:27:00,319 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:27:05 EEST)" (scheduled at 2025-10-02 21:27:00.317169+03:00)
+2025-10-02 21:27:00,860 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:27:05 EEST)" executed successfully
+2025-10-02 21:27:02,244 - config.settings - ERROR - ❌ CryptoCompare API ошибка: 'NoneType' object is not iterable
+2025-10-02 21:27:02,245 - config.settings - INFO - 📊 Итого уникальных новостей: 0
+2025-10-02 21:27:02,246 - apscheduler.executors.default - INFO - Job "Обновление новостных данных (trigger: interval[0:05:00], next run at: 2025-10-02 21:31:55 EEST)" executed successfully
+2025-10-02 21:27:05,322 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:27:10 EEST)" (scheduled at 2025-10-02 21:27:05.317169+03:00)
+2025-10-02 21:27:05,324 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:27:15 EEST)" (scheduled at 2025-10-02 21:27:05.321645+03:00)
+2025-10-02 21:27:05,327 - config.settings - WARNING - ⚠️ Ошибка обработки уровня orderbook: 0
+2025-10-02 21:27:05,328 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:27:15 EEST)" executed successfully
+2025-10-02 21:27:05,564 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:27:10 EEST)" executed successfully
+2025-10-02 21:27:10,321 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:27:15 EEST)" (scheduled at 2025-10-02 21:27:10.317169+03:00)
+2025-10-02 21:27:11,092 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:27:15 EEST)" executed successfully
+2025-10-02 21:27:15,321 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:27:20 EEST)" (scheduled at 2025-10-02 21:27:15.317169+03:00)
+2025-10-02 21:27:15,328 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:27:25 EEST)" (scheduled at 2025-10-02 21:27:15.321645+03:00)
+2025-10-02 21:27:15,329 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:27:25 EEST)" executed successfully
+2025-10-02 21:27:15,572 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:27:20 EEST)" executed successfully
+2025-10-02 21:27:17,660 - config.settings - INFO - [93m⚡ Получен сигнал SIGINT, инициируем завершение...[0m
+2025-10-02 21:27:17,669 - config.settings - INFO - [93m⚡ Получен сигнал SIGINT, инициируем завершение...[0m
+2025-10-02 21:27:20,331 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:27:25 EEST)" (scheduled at 2025-10-02 21:27:20.317169+03:00)
+2025-10-02 21:27:20,612 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:27:25 EEST)" executed successfully
+2025-10-02 21:27:25,319 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:27:30 EEST)" (scheduled at 2025-10-02 21:27:25.317169+03:00)
+2025-10-02 21:27:25,324 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:27:35 EEST)" (scheduled at 2025-10-02 21:27:25.321645+03:00)
+2025-10-02 21:27:25,326 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:27:35 EEST)" executed successfully
+2025-10-02 21:27:25,328 - apscheduler.executors.default - INFO - Running job "Отображение статуса (trigger: interval[0:00:30], next run at: 2025-10-02 21:27:55 EEST)" (scheduled at 2025-10-02 21:27:25.322995+03:00)
+2025-10-02 21:27:25,335 - config.settings - INFO - [94m📊 STATUS: Uptime: 0.1h | Signals: 6 | Updates: 66 | Memory: 5.6% | Active ROI: 2 (avg: [92m+2.00%[0m) | Bybit: connected[0m
+2025-10-02 21:27:25,337 - apscheduler.executors.default - INFO - Job "Отображение статуса (trigger: interval[0:00:30], next run at: 2025-10-02 21:27:55 EEST)" executed successfully
+2025-10-02 21:27:25,547 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:27:30 EEST)" executed successfully
+2025-10-02 21:27:28,653 - config.settings - INFO - [93m⚡ Получен сигнал SIGINT, инициируем завершение...[0m
+2025-10-02 21:27:30,258 - config.settings - INFO - [93m⚡ Получен сигнал SIGINT, инициируем завершение...[0m
+2025-10-02 21:27:30,329 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:27:35 EEST)" (scheduled at 2025-10-02 21:27:30.317169+03:00)
+2025-10-02 21:27:30,566 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:27:35 EEST)" executed successfully
+2025-10-02 21:27:30,970 - config.settings - INFO - [93m⚡ Получен сигнал SIGINT, инициируем завершение...[0m
+2025-10-02 21:27:31,318 - config.settings - INFO - [93m⚡ Получен сигнал SIGINT, инициируем завершение...[0m
+2025-10-02 21:27:31,624 - config.settings - INFO - [93m⚡ Получен сигнал SIGINT, инициируем завершение...[0m
+2025-10-02 21:27:31,930 - config.settings - INFO - [93m⚡ Получен сигнал SIGINT, инициируем завершение...[0m
+2025-10-02 21:27:35,332 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:27:40 EEST)" (scheduled at 2025-10-02 21:27:35.317169+03:00)
+2025-10-02 21:27:35,335 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:27:45 EEST)" (scheduled at 2025-10-02 21:27:35.321645+03:00)
+2025-10-02 21:27:35,336 - config.settings - WARNING - ⚠️ Ошибка обработки уровня orderbook: 0
+2025-10-02 21:27:35,336 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:27:45 EEST)" executed successfully
+2025-10-02 21:27:35,946 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:27:40 EEST)" executed successfully
+2025-10-02 21:27:40,322 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:27:45 EEST)" (scheduled at 2025-10-02 21:27:40.317169+03:00)
+2025-10-02 21:27:40,625 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:27:45 EEST)" executed successfully
+2025-10-02 21:27:45,321 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:27:50 EEST)" (scheduled at 2025-10-02 21:27:45.317169+03:00)
+2025-10-02 21:27:45,324 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:27:55 EEST)" (scheduled at 2025-10-02 21:27:45.321645+03:00)
+2025-10-02 21:27:45,325 - config.settings - WARNING - ⚠️ Ошибка обработки уровня orderbook: 0
+2025-10-02 21:27:45,326 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:27:55 EEST)" executed successfully
+2025-10-02 21:27:45,784 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:27:50 EEST)" executed successfully
+2025-10-02 21:27:50,320 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:27:55 EEST)" (scheduled at 2025-10-02 21:27:50.317169+03:00)
+2025-10-02 21:27:50,632 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:27:55 EEST)" executed successfully
+2025-10-02 21:27:55,321 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:28:00 EEST)" (scheduled at 2025-10-02 21:27:55.317169+03:00)
+2025-10-02 21:27:55,322 - apscheduler.executors.default - INFO - Running job "Анализ торговых сценариев (trigger: interval[0:01:00], next run at: 2025-10-02 21:28:55 EEST)" (scheduled at 2025-10-02 21:27:55.320010+03:00)
+2025-10-02 21:27:55,337 - config.settings - WARNING - ⚠️ Сценарий version не прошёл валидацию
+2025-10-02 21:27:55,338 - config.settings - WARNING - ⚠️ Сценарий count не прошёл валидацию
+2025-10-02 21:27:55,339 - config.settings - WARNING - ⚠️ Сценарий scenarios не прошёл валидацию
+2025-10-02 21:27:55,340 - config.settings - WARNING - ⚠️ Сценарий trigger_policy_percent не прошёл валидацию
+2025-10-02 21:27:55,340 - config.settings - WARNING - ⚠️ Сценарий meta не прошёл валидацию
+2025-10-02 21:27:55,340 - config.settings - WARNING - ⚠️ Сценарий params_default не прошёл валидацию
+2025-10-02 21:27:55,341 - config.settings - WARNING - ⚠️ Сценарий params_overrides не прошёл валидацию
+2025-10-02 21:27:55,341 - config.settings - WARNING - ⚠️ Сценарий mtf_policy не прошёл валидацию
+2025-10-02 21:27:55,341 - config.settings - WARNING - ⚠️ Сценарий news_policy не прошёл валидацию
+2025-10-02 21:27:55,342 - config.settings - WARNING - ⚠️ Сценарий decision_policy не прошёл валидацию
+2025-10-02 21:27:55,342 - config.settings - WARNING - ⚠️ Сценарий tactics_policy не прошёл валидацию
+2025-10-02 21:27:55,342 - config.settings - WARNING - ⚠️ Сценарий sizing_policy не прошёл валидацию
+2025-10-02 21:27:55,350 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:28:05 EEST)" (scheduled at 2025-10-02 21:27:55.321645+03:00)
+2025-10-02 21:27:55,355 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:28:05 EEST)" executed successfully
+2025-10-02 21:27:55,356 - apscheduler.executors.default - INFO - Running job "Отображение статуса (trigger: interval[0:00:30], next run at: 2025-10-02 21:28:25 EEST)" (scheduled at 2025-10-02 21:27:55.322995+03:00)
+2025-10-02 21:27:55,361 - config.settings - INFO - [94m📊 STATUS: Uptime: 0.1h | Signals: 6 | Updates: 72 | Memory: 5.8% | Active ROI: 2 (avg: [92m+4.00%[0m) | Bybit: connected[0m
+2025-10-02 21:27:55,365 - apscheduler.executors.default - INFO - Job "Отображение статуса (trigger: interval[0:00:30], next run at: 2025-10-02 21:28:25 EEST)" executed successfully
+2025-10-02 21:27:55,366 - apscheduler.executors.default - INFO - Running job "Управление памятью (trigger: interval[0:01:00], next run at: 2025-10-02 21:28:55 EEST)" (scheduled at 2025-10-02 21:27:55.324964+03:00)
+2025-10-02 21:27:55,367 - apscheduler.executors.default - INFO - Job "Управление памятью (trigger: interval[0:01:00], next run at: 2025-10-02 21:28:55 EEST)" executed successfully
+2025-10-02 21:27:55,374 - config.settings - INFO - ✅ Загружено 5 торговых сценариев
+2025-10-02 21:27:55,375 - config.settings - ERROR - ❌ Ошибка расчёта market stability: name 'np' is not defined
+2025-10-02 21:27:55,376 - config.settings - ERROR - ❌ Ошибка расчёта market stability: name 'np' is not defined
+2025-10-02 21:27:55,376 - config.settings - WARNING - [95m🛑 VETO АКТИВИРОВАНО[0m для BTCUSDT: orderbook_manipulation | Risk: 1.00 | Stability: 0.50
+2025-10-02 21:27:55,377 - config.settings - INFO - 🛑 Генерация сигналов заблокирована veto системой для BTCUSDT
+2025-10-02 21:27:55,377 - config.settings - INFO - 🎯 Сгенерировано 1 торговых сигналов
+2025-10-02 21:27:55,496 - config.settings - WARNING - [95m🛑 VETO[0m: BTCUSDT - VETO: Подозрение на манипуляцию orderbook: дисбаланс 98.3x
+2025-10-02 21:27:55,497 - apscheduler.executors.default - INFO - Job "Анализ торговых сценариев (trigger: interval[0:01:00], next run at: 2025-10-02 21:28:55 EEST)" executed successfully
+2025-10-02 21:27:55,590 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:28:00 EEST)" executed successfully
+2025-10-02 21:28:00,323 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:28:05 EEST)" (scheduled at 2025-10-02 21:28:00.317169+03:00)
+2025-10-02 21:28:00,558 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:28:05 EEST)" executed successfully
+2025-10-02 21:28:04,089 - config.settings - INFO - [93m⚡ Получен сигнал SIGINT, инициируем завершение...[0m
+2025-10-02 21:28:05,319 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:28:10 EEST)" (scheduled at 2025-10-02 21:28:05.317169+03:00)
+2025-10-02 21:28:05,323 - apscheduler.executors.default - INFO - Running job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:28:15 EEST)" (scheduled at 2025-10-02 21:28:05.321645+03:00)
+2025-10-02 21:28:05,324 - config.settings - WARNING - ⚠️ Ошибка обработки уровня orderbook: 0
+2025-10-02 21:28:05,324 - apscheduler.executors.default - INFO - Job "Обновление Volume Profile (trigger: interval[0:00:10], next run at: 2025-10-02 21:28:15 EEST)" executed successfully
+2025-10-02 21:28:05,538 - apscheduler.executors.default - INFO - Job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:28:10 EEST)" executed successfully
+2025-10-02 21:28:10,319 - apscheduler.executors.default - INFO - Running job "Обновление рыночных данных (trigger: interval[0:00:05], next run at: 2025-10-02 21:28:15 EEST)" (scheduled at 2025-10-02 21:28:10.317169+03:00)
