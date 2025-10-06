@@ -1,5 +1,8 @@
 # GIO Crypto Bot - Зависимости
 # Основные библиотеки
+setuptools>=65.5.1
+wheel>=0.38.4
+
 asyncio-mqtt==0.16.1
 aiohttp==3.9.1
 aiosqlite==0.19.0
