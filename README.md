@@ -1,6 +1,6 @@
 # GIO.BOT
 
-Мониторинг крипторынка (BTCUSDT) с сохранением данных в SQLite и выводом аналитики в реальном времени.
+Мониторинг крипторынка с сохранением данных в SQLite и выводом аналитики в реальном времени.
 Поддержка источников:
 Bybit: OHLCV, индикаторы (RSI, ATR), Volume Profile (VPoC, VAH, VAL)
 Binance: цена, объём, open interest, funding rate, long/short ratio, ликвидации через WebSocket
