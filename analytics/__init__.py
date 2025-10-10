@@ -1,7 +1,7 @@
 ﻿from .volume_profile import *
 from .professional_news_analyzer import ProfessionalNewsAnalyzer
 from .enhanced_sentiment_analyzer import EnhancedNewsAnalyzer
-from .trend_detector import *
+from .trenddetector import *
 from .veto_system import *
 from .advanced_volume_profile import ExoChartsVolumeProfile
 

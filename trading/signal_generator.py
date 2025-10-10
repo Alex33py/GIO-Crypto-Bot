@@ -11,21 +11,39 @@ from dataclasses import dataclass, field
 from collections import defaultdict
 
 from config.settings import (
-    logger, DEAL_THRESHOLD, RISKY_THRESHOLD, DEFAULT_ATR_SL_MULTIPLIER,
-    DEFAULT_TP1_PCT, MIN_RR_RATIO
+    logger,
+    DEAL_THRESHOLD,
+    RISKY_THRESHOLD,
+    DEFAULT_ATR_SL_MULTIPLIER,
+    DEFAULT_TP1_PCT,
+    MIN_RR_RATIO,
 )
 from config.constants import (
-    SignalStatusEnum, SignalLevelEnum, EnhancedTradingSignal,
-    TrendDirectionEnum, VetoReasonEnum
+    SignalStatusEnum,
+    SignalLevelEnum,
+    EnhancedTradingSignal,
+    TrendDirectionEnum,
+    VetoReasonEnum,
 )
 from analytics.veto_system import EnhancedVetoSystem, VetoAnalysisResult
 from utils.helpers import current_epoch_ms, safe_float, calculate_percentage_change
 from utils.validators import validate_signal_data
 
+# Импорт фильтров (если они есть)
+try:
+    from filters.confirm_filter import ConfirmFilter
+    from filters.multi_tf_filter import MultiTimeframeFilter
+
+    FILTERS_AVAILABLE = True
+except ImportError:
+    FILTERS_AVAILABLE = False
+    logger.warning("⚠️ Фильтры не найдены, работа без фильтров")
+
 
 @dataclass
 class ScenarioMatch:
     """Совпадение сценария с рыночными условиями"""
+
     scenario_id: str
     scenario_name: str
     match_confidence: float
@@ -39,6 +57,7 @@ class ScenarioMatch:
 @dataclass
 class TechnicalAnalysis:
     """Результат технического анализа"""
+
     rsi: float = 0.0
     atr: float = 0.0
     sma_20: float = 0.0
@@ -57,9 +76,23 @@ class TechnicalAnalysis:
 class AdvancedSignalGenerator:
     """Продвинутый генератор торговых сигналов с комплексным анализом"""
 
-    def __init__(self, veto_system: EnhancedVetoSystem):
+    def __init__(
+        self,
+        bot,
+        veto_system: EnhancedVetoSystem,
+        confirm_filter: Optional["ConfirmFilter"] = None,
+        multi_tf_filter: Optional["MultiTimeframeFilter"] = None,
+    ):
         """Инициализация генератора сигналов"""
+        self.bot = bot
         self.veto_system = veto_system
+        self.confirm_filter = confirm_filter
+        self.multi_tf_filter = multi_tf_filter
+
+        if self.confirm_filter:
+            logger.info("✅ Confirm Filter интегрирован в SignalGenerator")
+        if self.multi_tf_filter:
+            logger.info("✅ Multi-TF Filter интегрирован в SignalGenerator")
 
         # Кэш технических индикаторов
         self.technical_cache = {}
@@ -96,7 +129,7 @@ class AdvancedSignalGenerator:
         market_data: Dict[str, Any],
         volume_profile: Any,
         news_sentiment: Dict[str, Any],
-        scenarios: Dict[str, Any]
+        scenarios: Dict[str, Any],
     ) -> List[EnhancedTradingSignal]:
         """Генерация расширенных торговых сигналов"""
         try:
@@ -110,16 +143,25 @@ class AdvancedSignalGenerator:
             )
 
             if veto_result.is_vetoed:
-                logger.info(f"🛑 Генерация сигналов заблокирована veto системой для {symbol}")
+                logger.info(
+                    f"🛑 Генерация сигналов заблокирована veto системой для {symbol}"
+                )
                 self.generation_stats["vetoed_signals"] += 1
                 return self._create_vetoed_signals(symbol, veto_result)
 
             # 2. Выполняем технический анализ
-            technical_analysis = await self._perform_technical_analysis(symbol, market_data)
+            technical_analysis = await self._perform_technical_analysis(
+                symbol, market_data
+            )
 
             # 3. Анализируем сценарии
             scenario_matches = await self._analyze_scenarios(
-                symbol, market_data, volume_profile, news_sentiment, scenarios, technical_analysis
+                symbol,
+                market_data,
+                volume_profile,
+                news_sentiment,
+                scenarios,
+                technical_analysis,
             )
 
             if not scenario_matches:
@@ -130,19 +172,59 @@ class AdvancedSignalGenerator:
             generated_signals = []
             for match in scenario_matches:
                 signal = await self._create_signal_from_match(
-                    symbol, match, market_data, technical_analysis, veto_result, volume_profile, news_sentiment
+                    symbol,
+                    match,
+                    market_data,
+                    technical_analysis,
+                    veto_result,
+                    volume_profile,
+                    news_sentiment,
                 )
                 if signal:
-                    generated_signals.append(signal)
+                    # ========== ✅ DEBUG ЛОГИ ==========
+                    logger.info(f"🔍 DEBUG для {symbol}:")
+                    logger.info(f"   FILTERS_AVAILABLE = {FILTERS_AVAILABLE}")
+                    logger.info(f"   self.confirm_filter = {self.confirm_filter}")
+                    logger.info(f"   self.multi_tf_filter = {self.multi_tf_filter}")
+                    # ===================================
+
+                    # НОВОЕ: Применяем фильтры
+                    if FILTERS_AVAILABLE and (
+                        self.confirm_filter or self.multi_tf_filter
+                    ):
+                        logger.info(f"🔍 Применение фильтров для {symbol}...")
+
+                        filters_passed, reason = await self._apply_filters(
+                            signal, symbol, market_data, technical_analysis
+                        )
+
+                        if filters_passed:
+                            logger.info(f"✅ {symbol}: Сигнал прошёл все фильтры")
+                            generated_signals.append(signal)
+                        else:
+                            logger.warning(
+                                f"❌ {symbol}: Сигнал отклонён фильтром: {reason}"
+                            )
+                    else:
+                        # Фильтры не доступны или не настроены
+                        logger.warning(f"⚠️ {symbol}: Фильтры ПРОПУЩЕНЫ!")
+                        logger.warning(
+                            f"   Причина: FILTERS_AVAILABLE={FILTERS_AVAILABLE}, confirm={self.confirm_filter}, mtf={self.multi_tf_filter}"
+                        )
+                        generated_signals.append(signal)
 
             # 5. Фильтруем и ранжируем сигналы
-            final_signals = await self._filter_and_rank_signals(generated_signals, market_data)
+            final_signals = await self._filter_and_rank_signals(
+                generated_signals, market_data
+            )
 
             # 6. Обновляем статистику
             self._update_generation_stats(final_signals, scenario_matches)
 
             if final_signals:
-                logger.info(f"🎯 Сгенерировано {len(final_signals)} сигналов для {symbol}")
+                logger.info(
+                    f"🎯 Сгенерировано {len(final_signals)} сигналов для {symbol}"
+                )
 
             return final_signals
 
@@ -150,7 +232,9 @@ class AdvancedSignalGenerator:
             logger.error(f"❌ Ошибка генерации сигналов: {e}")
             return []
 
-    async def _perform_technical_analysis(self, symbol: str, market_data: Dict) -> TechnicalAnalysis:
+    async def _perform_technical_analysis(
+        self, symbol: str, market_data: Dict
+    ) -> TechnicalAnalysis:
         """Выполнение технического анализа"""
         try:
             # Получаем исторические данные свечей
@@ -192,7 +276,9 @@ class AdvancedSignalGenerator:
             technical.macd_signal = macd_signal
 
             # Bollinger Bands
-            bb_upper, bb_lower = self._calculate_bollinger_bands(closes, period=20, std_dev=2)
+            bb_upper, bb_lower = self._calculate_bollinger_bands(
+                closes, period=20, std_dev=2
+            )
             technical.bollinger_upper = bb_upper
             technical.bollinger_lower = bb_lower
 
@@ -201,7 +287,9 @@ class AdvancedSignalGenerator:
             technical.resistance_level = self._find_resistance_level(highs[-20:])
 
             # Trend Analysis
-            technical.trend_direction = self._determine_trend_direction(closes, technical)
+            technical.trend_direction = self._determine_trend_direction(
+                closes, technical
+            )
             technical.trend_strength = self._calculate_trend_strength(closes, technical)
 
             return technical
@@ -234,7 +322,13 @@ class AdvancedSignalGenerator:
         except Exception:
             return 50.0
 
-    def _calculate_atr(self, highs: List[float], lows: List[float], closes: List[float], period: int = 14) -> float:
+    def _calculate_atr(
+        self,
+        highs: List[float],
+        lows: List[float],
+        closes: List[float],
+        period: int = 14,
+    ) -> float:
         """Расчёт Average True Range"""
         try:
             if len(highs) < period + 1:
@@ -243,8 +337,8 @@ class AdvancedSignalGenerator:
             true_ranges = []
             for i in range(1, len(closes)):
                 tr1 = highs[i] - lows[i]
-                tr2 = abs(highs[i] - closes[i-1])
-                tr3 = abs(lows[i] - closes[i-1])
+                tr2 = abs(highs[i] - closes[i - 1])
+                tr3 = abs(lows[i] - closes[i - 1])
                 true_range = max(tr1, tr2, tr3)
                 true_ranges.append(true_range)
 
@@ -304,7 +398,9 @@ class AdvancedSignalGenerator:
         except Exception:
             return 0.0, 0.0
 
-    def _calculate_bollinger_bands(self, prices: List[float], period: int = 20, std_dev: int = 2) -> Tuple[float, float]:
+    def _calculate_bollinger_bands(
+        self, prices: List[float], period: int = 20, std_dev: int = 2
+    ) -> Tuple[float, float]:
         """Расчёт полос Боллинжера"""
         try:
             if len(prices) < period:
@@ -344,14 +440,18 @@ class AdvancedSignalGenerator:
 
             # Простой алгоритм: находим максимум из последних максимумов
             recent_highs = sorted(highs, reverse=True)
-            resistance = np.mean(recent_highs[:3])  # Среднее из 3 самых высоких значений
+            resistance = np.mean(
+                recent_highs[:3]
+            )  # Среднее из 3 самых высоких значений
 
             return round(float(resistance), 2)
 
         except Exception:
             return 0.0
 
-    def _determine_trend_direction(self, prices: List[float], technical: TechnicalAnalysis) -> TrendDirectionEnum:
+    def _determine_trend_direction(
+        self, prices: List[float], technical: TechnicalAnalysis
+    ) -> TrendDirectionEnum:
         """Определение направления тренда"""
         try:
             if len(prices) < 10:
@@ -400,7 +500,9 @@ class AdvancedSignalGenerator:
         except Exception:
             return TrendDirectionEnum.NEUTRAL
 
-    def _calculate_trend_strength(self, prices: List[float], technical: TechnicalAnalysis) -> float:
+    def _calculate_trend_strength(
+        self, prices: List[float], technical: TechnicalAnalysis
+    ) -> float:
         """Расчёт силы тренда"""
         try:
             if len(prices) < 10:
@@ -421,7 +523,9 @@ class AdvancedSignalGenerator:
 
             # Фактор MACD дивергенции
             if technical.macd_line != 0:
-                macd_strength = abs(technical.macd_line - technical.macd_signal) / abs(technical.macd_line)
+                macd_strength = abs(technical.macd_line - technical.macd_signal) / abs(
+                    technical.macd_line
+                )
                 strength_factors.append(min(1.0, macd_strength))
 
             # Итоговая сила тренда
@@ -441,22 +545,28 @@ class AdvancedSignalGenerator:
         volume_profile: Any,
         news_sentiment: Dict,
         scenarios: Dict,
-        technical: TechnicalAnalysis
+        technical: TechnicalAnalysis,
     ) -> List[ScenarioMatch]:
         """Анализ соответствия торговых сценариев"""
         try:
             matches = []
-            current_price = safe_float(market_data.get("ticker", {}).get("last_price", 0))
+            current_price = safe_float(
+                market_data.get("ticker", {}).get("last_price", 0)
+            )
 
             if current_price <= 0:
                 return matches
 
             if isinstance(scenarios, list):
-                logger.info(f"🔄 Конвертация {len(scenarios)} сценариев из списка в словарь")
+                logger.info(
+                    f"🔄 Конвертация {len(scenarios)} сценариев из списка в словарь"
+                )
                 scenarios_dict = {}
                 for idx, scenario in enumerate(scenarios):
                     # Используем 'id' или 'name' как ключ, или генерируем
-                    scenario_id = scenario.get("id", scenario.get("name", f"scenario_{idx}"))
+                    scenario_id = scenario.get(
+                        "id", scenario.get("name", f"scenario_{idx}")
+                    )
                     scenarios_dict[scenario_id] = scenario
                 scenarios = scenarios_dict
                 logger.debug(f"✅ Преобразовано в {len(scenarios)} сценариев-словарей")
@@ -464,24 +574,36 @@ class AdvancedSignalGenerator:
             for scenario_id, scenario_data in scenarios.items():
                 try:
                     # Проверяем базовые условия сценария
-                    if not self._validate_scenario_basic_conditions(scenario_data, symbol):
+                    if not self._validate_scenario_basic_conditions(
+                        scenario_data, symbol
+                    ):
                         continue
 
                     # Анализируем совпадение условий
                     match_result = await self._match_scenario_conditions(
-                        scenario_data, market_data, volume_profile, news_sentiment, technical, current_price
+                        scenario_data,
+                        market_data,
+                        volume_profile,
+                        news_sentiment,
+                        technical,
+                        current_price,
                     )
 
-                    if match_result["confidence"] >= self.signal_settings["min_confidence"]:
+                    if (
+                        match_result["confidence"]
+                        >= self.signal_settings["min_confidence"]
+                    ):
                         scenario_match = ScenarioMatch(
                             scenario_id=scenario_id,
-                            scenario_name=scenario_data.get("name", f"Scenario_{scenario_id}"),
+                            scenario_name=scenario_data.get(
+                                "name", f"Scenario_{scenario_id}"
+                            ),
                             match_confidence=match_result["confidence"],
                             matched_conditions=match_result["matched_conditions"],
                             signal_type=scenario_data.get("signal_type", "BUY").upper(),
                             entry_reasoning=match_result["reasoning"],
                             risk_level=scenario_data.get("risk_level", "medium"),
-                            expected_timeframe=scenario_data.get("timeframe", "1h")
+                            expected_timeframe=scenario_data.get("timeframe", "1h"),
                         )
                         matches.append(scenario_match)
 
@@ -497,7 +619,9 @@ class AdvancedSignalGenerator:
             logger.error(f"❌ Ошибка анализа сценариев: {e}")
             return []
 
-    def _validate_scenario_basic_conditions(self, scenario_data: Dict, symbol: str) -> bool:
+    def _validate_scenario_basic_conditions(
+        self, scenario_data: Dict, symbol: str
+    ) -> bool:
         """Валидация базовых условий сценария"""
         try:
             # Проверяем обязательные поля
@@ -528,7 +652,7 @@ class AdvancedSignalGenerator:
         volume_profile: Any,
         news_sentiment: Dict,
         technical: TechnicalAnalysis,
-        current_price: float
+        current_price: float,
     ) -> Dict:
         """Сопоставление условий сценария с рыночными данными"""
         try:
@@ -538,14 +662,18 @@ class AdvancedSignalGenerator:
             reasoning_parts = []
 
             # Анализ технических условий
-            tech_match = self._match_technical_conditions(conditions.get("technical", {}), technical)
+            tech_match = self._match_technical_conditions(
+                conditions.get("technical", {}), technical
+            )
             if tech_match["matched"]:
                 matched_conditions.extend(tech_match["conditions"])
                 confidence_scores.append(tech_match["confidence"])
                 reasoning_parts.append(tech_match["reasoning"])
 
             # Анализ объёмных условий
-            volume_match = self._match_volume_conditions(conditions.get("volume", {}), market_data, volume_profile)
+            volume_match = self._match_volume_conditions(
+                conditions.get("volume", {}), market_data, volume_profile
+            )
             if volume_match["matched"]:
                 matched_conditions.extend(volume_match["conditions"])
                 confidence_scores.append(volume_match["confidence"])
@@ -553,14 +681,18 @@ class AdvancedSignalGenerator:
 
             # Анализ новостных условий
             if news_sentiment:
-                news_match = self._match_news_conditions(conditions.get("news", {}), news_sentiment)
+                news_match = self._match_news_conditions(
+                    conditions.get("news", {}), news_sentiment
+                )
                 if news_match["matched"]:
                     matched_conditions.extend(news_match["conditions"])
                     confidence_scores.append(news_match["confidence"])
                     reasoning_parts.append(news_match["reasoning"])
 
             # Анализ ценовых условий
-            price_match = self._match_price_conditions(conditions.get("price", {}), market_data, technical, current_price)
+            price_match = self._match_price_conditions(
+                conditions.get("price", {}), market_data, technical, current_price
+            )
             if price_match["matched"]:
                 matched_conditions.extend(price_match["conditions"])
                 confidence_scores.append(price_match["confidence"])
@@ -570,7 +702,9 @@ class AdvancedSignalGenerator:
             if confidence_scores:
                 # Взвешенное среднее с учётом количества совпавших условий
                 weight_multiplier = min(2.0, len(matched_conditions) / 3)
-                overall_confidence = (sum(confidence_scores) / len(confidence_scores)) * weight_multiplier
+                overall_confidence = (
+                    sum(confidence_scores) / len(confidence_scores)
+                ) * weight_multiplier
                 overall_confidence = min(1.0, overall_confidence)
             else:
                 overall_confidence = 0.0
@@ -578,18 +712,29 @@ class AdvancedSignalGenerator:
             return {
                 "confidence": round(overall_confidence, 3),
                 "matched_conditions": matched_conditions,
-                "reasoning": " | ".join(reasoning_parts)
+                "reasoning": " | ".join(reasoning_parts),
             }
 
         except Exception as e:
             logger.error(f"❌ Ошибка сопоставления условий: {e}")
-            return {"confidence": 0.0, "matched_conditions": [], "reasoning": f"Error: {e}"}
+            return {
+                "confidence": 0.0,
+                "matched_conditions": [],
+                "reasoning": f"Error: {e}",
+            }
 
-    def _match_technical_conditions(self, tech_conditions: Dict, technical: TechnicalAnalysis) -> Dict:
+    def _match_technical_conditions(
+        self, tech_conditions: Dict, technical: TechnicalAnalysis
+    ) -> Dict:
         """Сопоставление технических условий"""
         try:
             if not tech_conditions:
-                return {"matched": False, "conditions": [], "confidence": 0.0, "reasoning": ""}
+                return {
+                    "matched": False,
+                    "conditions": [],
+                    "confidence": 0.0,
+                    "reasoning": "",
+                }
 
             matched = []
             scores = []
@@ -612,11 +757,17 @@ class AdvancedSignalGenerator:
 
             # MACD условия
             macd_condition = tech_conditions.get("macd_signal")
-            if macd_condition == "bullish_crossover" and technical.macd_line > technical.macd_signal:
+            if (
+                macd_condition == "bullish_crossover"
+                and technical.macd_line > technical.macd_signal
+            ):
                 matched.append("MACD bullish crossover")
                 scores.append(0.7)
                 reasons.append("MACD линия выше сигнальной")
-            elif macd_condition == "bearish_crossover" and technical.macd_line < technical.macd_signal:
+            elif (
+                macd_condition == "bearish_crossover"
+                and technical.macd_line < technical.macd_signal
+            ):
                 matched.append("MACD bearish crossover")
                 scores.append(0.7)
                 reasons.append("MACD линия ниже сигнальной")
@@ -625,11 +776,17 @@ class AdvancedSignalGenerator:
             bb_condition = tech_conditions.get("bollinger_position")
             current_price = technical.support_level or technical.resistance_level or 0
             if bb_condition and current_price > 0:
-                if bb_condition == "lower_band" and current_price <= technical.bollinger_lower:
+                if (
+                    bb_condition == "lower_band"
+                    and current_price <= technical.bollinger_lower
+                ):
                     matched.append("Цена у нижней полосы Боллинжера")
                     scores.append(0.8)
                     reasons.append("Цена достигла нижней BB")
-                elif bb_condition == "upper_band" and current_price >= technical.bollinger_upper:
+                elif (
+                    bb_condition == "upper_band"
+                    and current_price >= technical.bollinger_upper
+                ):
                     matched.append("Цена у верхней полосы Боллинжера")
                     scores.append(0.8)
                     reasons.append("Цена достигла верхней BB")
@@ -640,19 +797,36 @@ class AdvancedSignalGenerator:
                     "matched": True,
                     "conditions": matched,
                     "confidence": avg_confidence,
-                    "reasoning": " & ".join(reasons)
+                    "reasoning": " & ".join(reasons),
                 }
 
-            return {"matched": False, "conditions": [], "confidence": 0.0, "reasoning": ""}
+            return {
+                "matched": False,
+                "conditions": [],
+                "confidence": 0.0,
+                "reasoning": "",
+            }
 
         except Exception:
-            return {"matched": False, "conditions": [], "confidence": 0.0, "reasoning": "Tech analysis error"}
+            return {
+                "matched": False,
+                "conditions": [],
+                "confidence": 0.0,
+                "reasoning": "Tech analysis error",
+            }
 
-    def _match_volume_conditions(self, volume_conditions: Dict, market_data: Dict, volume_profile: Any) -> Dict:
+    def _match_volume_conditions(
+        self, volume_conditions: Dict, market_data: Dict, volume_profile: Any
+    ) -> Dict:
         """Сопоставление объёмных условий"""
         try:
             if not volume_conditions:
-                return {"matched": False, "conditions": [], "confidence": 0.0, "reasoning": ""}
+                return {
+                    "matched": False,
+                    "conditions": [],
+                    "confidence": 0.0,
+                    "reasoning": "",
+                }
 
             matched = []
             scores = []
@@ -672,7 +846,7 @@ class AdvancedSignalGenerator:
             volume_spike = volume_conditions.get("volume_spike_required")
             if volume_spike and volume_profile:
                 # Простая проверка через данные volume profile
-                total_volume = getattr(volume_profile, 'total_composite_volume', 0)
+                total_volume = getattr(volume_profile, "total_composite_volume", 0)
                 if total_volume > current_volume * 1.5:  # Спайк объёма
                     matched.append("Спайк объёма")
                     scores.append(0.8)
@@ -681,13 +855,15 @@ class AdvancedSignalGenerator:
             # POC анализ
             poc_condition = volume_conditions.get("poc_interaction")
             if poc_condition and volume_profile:
-                poc_price = getattr(volume_profile, 'poc_price', 0)
+                poc_price = getattr(volume_profile, "poc_price", 0)
                 current_price = safe_float(ticker.get("last_price", 0))
 
                 if poc_price > 0 and current_price > 0:
                     price_diff_pct = abs(current_price - poc_price) / poc_price * 100
 
-                    if poc_condition == "near_poc" and price_diff_pct <= 1.0:  # В пределах 1%
+                    if (
+                        poc_condition == "near_poc" and price_diff_pct <= 1.0
+                    ):  # В пределах 1%
                         matched.append("Цена рядом с POC")
                         scores.append(0.7)
                         reasons.append(f"Цена в {price_diff_pct:.2f}% от POC")
@@ -698,19 +874,36 @@ class AdvancedSignalGenerator:
                     "matched": True,
                     "conditions": matched,
                     "confidence": avg_confidence,
-                    "reasoning": " & ".join(reasons)
+                    "reasoning": " & ".join(reasons),
                 }
 
-            return {"matched": False, "conditions": [], "confidence": 0.0, "reasoning": ""}
+            return {
+                "matched": False,
+                "conditions": [],
+                "confidence": 0.0,
+                "reasoning": "",
+            }
 
         except Exception:
-            return {"matched": False, "conditions": [], "confidence": 0.0, "reasoning": "Volume analysis error"}
+            return {
+                "matched": False,
+                "conditions": [],
+                "confidence": 0.0,
+                "reasoning": "Volume analysis error",
+            }
 
-    def _match_news_conditions(self, news_conditions: Dict, news_sentiment: Dict) -> Dict:
+    def _match_news_conditions(
+        self, news_conditions: Dict, news_sentiment: Dict
+    ) -> Dict:
         """Сопоставление новостных условий"""
         try:
             if not news_conditions or not news_sentiment:
-                return {"matched": False, "conditions": [], "confidence": 0.0, "reasoning": ""}
+                return {
+                    "matched": False,
+                    "conditions": [],
+                    "confidence": 0.0,
+                    "reasoning": "",
+                }
 
             matched = []
             scores = []
@@ -723,7 +916,12 @@ class AdvancedSignalGenerator:
                 break
 
             if not symbol_sentiment:
-                return {"matched": False, "conditions": [], "confidence": 0.0, "reasoning": ""}
+                return {
+                    "matched": False,
+                    "conditions": [],
+                    "confidence": 0.0,
+                    "reasoning": "",
+                }
 
             # Общий sentiment
             required_sentiment = news_conditions.get("overall_sentiment")
@@ -759,19 +957,40 @@ class AdvancedSignalGenerator:
                     "matched": True,
                     "conditions": matched,
                     "confidence": avg_confidence,
-                    "reasoning": " & ".join(reasons)
+                    "reasoning": " & ".join(reasons),
                 }
 
-            return {"matched": False, "conditions": [], "confidence": 0.0, "reasoning": ""}
+            return {
+                "matched": False,
+                "conditions": [],
+                "confidence": 0.0,
+                "reasoning": "",
+            }
 
         except Exception:
-            return {"matched": False, "conditions": [], "confidence": 0.0, "reasoning": "News analysis error"}
+            return {
+                "matched": False,
+                "conditions": [],
+                "confidence": 0.0,
+                "reasoning": "News analysis error",
+            }
 
-    def _match_price_conditions(self, price_conditions: Dict, market_data: Dict, technical: TechnicalAnalysis, current_price: float) -> Dict:
+    def _match_price_conditions(
+        self,
+        price_conditions: Dict,
+        market_data: Dict,
+        technical: TechnicalAnalysis,
+        current_price: float,
+    ) -> Dict:
         """Сопоставление ценовых условий"""
         try:
             if not price_conditions:
-                return {"matched": False, "conditions": [], "confidence": 0.0, "reasoning": ""}
+                return {
+                    "matched": False,
+                    "conditions": [],
+                    "confidence": 0.0,
+                    "reasoning": "",
+                }
 
             matched = []
             scores = []
@@ -780,7 +999,11 @@ class AdvancedSignalGenerator:
             # Поддержка/сопротивление
             support_test = price_conditions.get("support_test")
             if support_test and technical.support_level > 0:
-                support_distance = abs(current_price - technical.support_level) / technical.support_level * 100
+                support_distance = (
+                    abs(current_price - technical.support_level)
+                    / technical.support_level
+                    * 100
+                )
                 if support_distance <= 2.0:  # В пределах 2% от поддержки
                     matched.append("Тест поддержки")
                     scores.append(0.8)
@@ -788,11 +1011,17 @@ class AdvancedSignalGenerator:
 
             resistance_test = price_conditions.get("resistance_test")
             if resistance_test and technical.resistance_level > 0:
-                resistance_distance = abs(current_price - technical.resistance_level) / technical.resistance_level * 100
+                resistance_distance = (
+                    abs(current_price - technical.resistance_level)
+                    / technical.resistance_level
+                    * 100
+                )
                 if resistance_distance <= 2.0:  # В пределах 2% от сопротивления
                     matched.append("Тест сопротивления")
                     scores.append(0.8)
-                    reasons.append(f"Цена в {resistance_distance:.2f}% от сопротивления")
+                    reasons.append(
+                        f"Цена в {resistance_distance:.2f}% от сопротивления"
+                    )
 
             # Скользящие средние
             ma_condition = price_conditions.get("moving_average_position")
@@ -831,13 +1060,23 @@ class AdvancedSignalGenerator:
                     "matched": True,
                     "conditions": matched,
                     "confidence": avg_confidence,
-                    "reasoning": " & ".join(reasons)
+                    "reasoning": " & ".join(reasons),
                 }
 
-            return {"matched": False, "conditions": [], "confidence": 0.0, "reasoning": ""}
+            return {
+                "matched": False,
+                "conditions": [],
+                "confidence": 0.0,
+                "reasoning": "",
+            }
 
         except Exception:
-            return {"matched": False, "conditions": [], "confidence": 0.0, "reasoning": "Price analysis error"}
+            return {
+                "matched": False,
+                "conditions": [],
+                "confidence": 0.0,
+                "reasoning": "Price analysis error",
+            }
 
     async def _create_signal_from_match(
         self,
@@ -847,7 +1086,7 @@ class AdvancedSignalGenerator:
         technical: TechnicalAnalysis,
         veto_result: VetoAnalysisResult,
         volume_profile: Any,
-        news_sentiment: Dict
+        news_sentiment: Dict,
     ) -> Optional[EnhancedTradingSignal]:
         """Создание торгового сигнала из совпадения сценария"""
         try:
@@ -932,9 +1171,13 @@ class AdvancedSignalGenerator:
                 "current_price": current_price,
                 "volume_24h": safe_float(ticker.get("volume_24h", 0)),
                 "price_change_24h": safe_float(ticker.get("price_24h_pcnt", 0)),
-                "spread_bps": safe_float(market_data.get("orderbook", {}).get("spread_bps", 0)),
+                "spread_bps": safe_float(
+                    market_data.get("orderbook", {}).get("spread_bps", 0)
+                ),
                 "trend_direction": technical.trend_direction.value,
-                "poc_price": getattr(volume_profile, 'poc_price', 0) if volume_profile else 0,
+                "poc_price": (
+                    getattr(volume_profile, "poc_price", 0) if volume_profile else 0
+                ),
             }
 
             # Собираем новостное влияние
@@ -969,7 +1212,7 @@ class AdvancedSignalGenerator:
                 confidence_score=round(match.match_confidence, 3),
                 market_conditions=market_conditions,
                 news_impact=news_impact,
-                volume_profile_context={}
+                volume_profile_context={},
             )
 
             # Валидируем сигнал
@@ -983,7 +1226,9 @@ class AdvancedSignalGenerator:
             logger.error(f"❌ Ошибка создания сигнала: {e}")
             return None
 
-    def _create_vetoed_signals(self, symbol: str, veto_result: VetoAnalysisResult) -> List[EnhancedTradingSignal]:
+    def _create_vetoed_signals(
+        self, symbol: str, veto_result: VetoAnalysisResult
+    ) -> List[EnhancedTradingSignal]:
         """Создание заблокированных veto сигналов для информации"""
         try:
             if not veto_result.active_vetos:
@@ -1006,14 +1251,17 @@ class AdvancedSignalGenerator:
                 rr2=0.0,
                 rr3=0.0,
                 timestamp=current_epoch_ms(),
-                indicators={"risk_score": veto_result.risk_score, "market_stability": veto_result.market_stability},
+                indicators={
+                    "risk_score": veto_result.risk_score,
+                    "market_stability": veto_result.market_stability,
+                },
                 reason=f"VETO: {primary_veto.message}",
                 veto_reasons=[primary_veto.reason],
                 level=SignalLevelEnum.T3,
                 confidence_score=0.0,
                 market_conditions={},
                 news_impact={},
-                volume_profile_context={}
+                volume_profile_context={},
             )
 
             return [vetoed_signal]
@@ -1022,7 +1270,180 @@ class AdvancedSignalGenerator:
             logger.error(f"❌ Ошибка создания vetoed signals: {e}")
             return []
 
-    async def _filter_and_rank_signals(self, signals: List[EnhancedTradingSignal], market_data: Dict) -> List[EnhancedTradingSignal]:
+    async def _apply_filters(
+        self,
+        signal: EnhancedTradingSignal,
+        symbol: str,
+        market_data: Dict,
+        technical: TechnicalAnalysis,
+    ) -> Tuple[bool, str]:
+        """
+        Применение всех фильтров к сигналу
+
+        Args:
+            signal: Сигнал для проверки
+            symbol: Торговая пара
+            market_data: Рыночные данные
+            technical: Технический анализ
+
+        Returns:
+            (is_valid, reason) - прошёл ли фильтры и причина
+        """
+        try:
+            # Подготовка данных для фильтров
+            ticker = market_data.get("ticker", {})
+            current_price = safe_float(ticker.get("last_price", 0))
+
+            # Получаем orderbook data
+            orderbook_data = market_data.get("orderbook", {})
+            bids = orderbook_data.get("bids", [])
+            asks = orderbook_data.get("asks", [])
+
+            # Рассчитываем orderbook imbalance
+            orderbook_imbalance = None
+            if bids and asks:
+                bid_volume = sum([float(bid[1]) for bid in bids[:20]])
+                ask_volume = sum([float(ask[1]) for ask in asks[:20]])
+                total = bid_volume + ask_volume
+
+                if total > 0:
+                    orderbook_imbalance = ((bid_volume - ask_volume) / total) * 100
+
+            # Получаем candle data
+            klines_data = market_data.get("klines", {})
+            candles = klines_data.get("candles", [])
+            last_candle = {}
+
+            if candles:
+                last_candle_data = candles[-1]
+                last_candle = {
+                    "open": safe_float(last_candle_data.get("open", 0)),
+                    "high": safe_float(last_candle_data.get("high", 0)),
+                    "low": safe_float(last_candle_data.get("low", 0)),
+                    "close": safe_float(last_candle_data.get("close", 0)),
+                    "volume": safe_float(last_candle_data.get("volume", 0)),
+                }
+
+            # Подготовка market_data для фильтров
+            filter_market_data = {
+                "orderbook": {
+                    "imbalance": orderbook_imbalance,
+                    "bids": bids,
+                    "asks": asks,
+                },
+                "volume_1m": last_candle.get("volume", 0),
+                "avg_volume_24h": (
+                    safe_float(ticker.get("volume_24h", 0)) / 1440
+                    if ticker.get("volume_24h")
+                    else 0
+                ),
+                "last_candle": last_candle,
+                "large_trades": [],
+            }
+
+            # Подготовка signal_dict для фильтров
+            signal_dict = {
+                "symbol": symbol,
+                "direction": signal.side,  # BUY/SELL
+                "entry": signal.price_entry,
+                "tp1": signal.tp1,
+                "tp2": signal.tp2,
+                "tp3": signal.tp3,
+                "sl": signal.sl,
+                "score": signal.confidence_score * 100,
+                "risk_reward": signal.rr1,
+            }
+
+            # ========== 1. Multi-TF Filter ==========
+            if self.multi_tf_filter:
+                logger.info(f"🔍 Применение Multi-TF Filter для {symbol}...")
+
+                # ✅ ИСПРАВЛЕНО: Правильные аргументы для validate()
+                mtf_valid, mtf_trends, mtf_reason = await self.multi_tf_filter.validate(
+                    symbol=symbol,                           # ✅ symbol (str)
+                    direction=signal.side,                   # ✅ direction (str) - BUY/SELL
+                    timeframes=['1h', '4h', '1d'],          # ✅ timeframes (List[str])
+                    min_agreement=2                          # ✅ минимум 2 из 3 TF
+                )
+
+                if not mtf_valid:
+                    logger.warning(
+                        f"❌ {symbol}: Multi-TF Filter отклонил сигнал: {mtf_reason}"
+                    )
+                    return (False, f"Multi-TF Filter: {mtf_reason}")
+                else:
+                    logger.info(f"✅ {symbol}: Multi-TF Filter пройден: {mtf_reason}")
+                    logger.info(f"   📊 MTF Тренды: {mtf_trends}")
+
+                    # Увеличиваем confidence за согласование TF
+                    signal.confidence_score = min(1.0, signal.confidence_score + 0.1)
+
+                    # Сохраняем MTF информацию в сигнал
+                    signal.market_conditions['mtf_trends'] = mtf_trends
+                    signal.market_conditions['mtf_alignment'] = mtf_reason
+
+                    # ========== 2. Confirm Filter ==========
+                    if self.confirm_filter:
+                        logger.info(f"🔍 Применение Confirm Filter для {symbol}...")
+
+                        # ✅ ИСПРАВЛЕНО: await + правильные аргументы
+                        confirm_valid = await self.confirm_filter.validate(
+                            symbol=symbol,
+                            direction=signal.side,
+                            market_data=filter_market_data,
+                        )
+
+                        confirm_reason = "Confirmed" if confirm_valid else "Not confirmed"
+
+                        if not confirm_valid:
+                            logger.warning(
+                                f"❌ {symbol}: Confirm Filter отклонил сигнал: {confirm_reason}"
+                            )
+                            return (False, f"Confirm Filter: {confirm_reason}")
+                        else:
+                            logger.info(
+                                f"✅ {symbol}: Confirm Filter пройден: {confirm_reason}"
+                            )
+                            signal.confidence_score = min(1.0, signal.confidence_score + 0.1)
+
+                    # ========== 3. Cluster Analysis ========== ← ДОБАВЬТЕ ЭТО!
+                    if hasattr(self.bot, 'cluster_detector') and self.bot.cluster_detector:
+                        try:
+                            logger.info(f"🔍 Применение Cluster Analysis для {symbol}...")
+
+                            cluster_score = await self.bot.cluster_detector.get_cluster_score(
+                                symbol=symbol,
+                                direction=signal.side
+                            )
+
+                            logger.info(f"   📊 Cluster Score: {cluster_score:.2f}")
+
+                            if cluster_score > 0.5:
+                                signal.confidence_score = min(1.0, signal.confidence_score + (cluster_score * 0.14))
+                                logger.info(f"✅ {symbol}: Cluster Analysis пройден, новый confidence: {signal.confidence_score:.2f}")
+                                signal.market_conditions['cluster_score'] = cluster_score
+                            else:
+                                logger.warning(f"⚠️ {symbol}: Низкий Cluster Score: {cluster_score:.2f}")
+
+                        except Exception as e:
+                            logger.warning(f"⚠️ Ошибка Cluster Analysis для {symbol}: {e}")
+                    else:
+                        logger.debug(f"⚠️ Cluster Detector не доступен для {symbol}")
+
+                    # ✅ Все фильтры пройдены
+                    logger.info(f"🎯 {symbol}: Все фильтры успешно пройдены!")
+                    return (True, "All filters passed")
+
+
+        except Exception as e:
+            logger.error(f"❌ Ошибка применения фильтров: {e}", exc_info=True)
+            # В случае ошибки пропускаем сигнал (безопасная стратегия)
+            return (True, f"Filters skipped due to error: {e}")
+
+
+    async def _filter_and_rank_signals(
+        self, signals: List[EnhancedTradingSignal], market_data: Dict
+    ) -> List[EnhancedTradingSignal]:
         """Фильтрация и ранжирование сигналов"""
         try:
             if not signals:
@@ -1056,9 +1477,12 @@ class AdvancedSignalGenerator:
             logger.error(f"❌ Ошибка фильтрации сигналов: {e}")
             return signals
 
-    def _rank_signals_by_quality(self, signals: List[EnhancedTradingSignal]) -> List[EnhancedTradingSignal]:
+    def _rank_signals_by_quality(
+        self, signals: List[EnhancedTradingSignal]
+    ) -> List[EnhancedTradingSignal]:
         """Ранжирование сигналов по качеству"""
         try:
+
             def calculate_quality_score(signal: EnhancedTradingSignal) -> float:
                 score_components = []
 
@@ -1077,14 +1501,16 @@ class AdvancedSignalGenerator:
                 level_scores = {
                     SignalLevelEnum.T1: 1.0,
                     SignalLevelEnum.T2: 0.8,
-                    SignalLevelEnum.T3: 0.6
+                    SignalLevelEnum.T3: 0.6,
                 }
                 score_components.append(level_scores.get(signal.level, 0.6) * 0.1)
 
                 return sum(score_components)
 
             # Рассчитываем качество и сортируем
-            signal_quality_pairs = [(signal, calculate_quality_score(signal)) for signal in signals]
+            signal_quality_pairs = [
+                (signal, calculate_quality_score(signal)) for signal in signals
+            ]
             signal_quality_pairs.sort(key=lambda x: x[1], reverse=True)
 
             return [signal for signal, quality in signal_quality_pairs]
@@ -1093,7 +1519,9 @@ class AdvancedSignalGenerator:
             logger.error(f"❌ Ошибка ранжирования сигналов: {e}")
             return signals
 
-    def _update_generation_stats(self, signals: List[EnhancedTradingSignal], matches: List[ScenarioMatch]):
+    def _update_generation_stats(
+        self, signals: List[EnhancedTradingSignal], matches: List[ScenarioMatch]
+    ):
         """Обновление статистики генерации"""
         try:
             self.generation_stats["total_generated"] += len(signals)
@@ -1113,7 +1541,10 @@ class AdvancedSignalGenerator:
                 current_total = self.generation_stats["total_generated"]
                 current_avg = self.generation_stats["avg_confidence"]
 
-                new_avg = ((current_avg * (current_total - len(active_signals))) + sum(confidences)) / current_total
+                new_avg = (
+                    (current_avg * (current_total - len(active_signals)))
+                    + sum(confidences)
+                ) / current_total
                 self.generation_stats["avg_confidence"] = round(new_avg, 3)
 
             # Статистика по сценариям
@@ -1131,10 +1562,14 @@ class AdvancedSignalGenerator:
                 "signal_settings": self.signal_settings.copy(),
                 "technical_cache_size": len(self.technical_cache),
                 "price_history_symbols": len(self.price_history),
-                "most_matched_scenario": max(
-                    self.generation_stats["scenarios_matched"],
-                    key=self.generation_stats["scenarios_matched"].get
-                ) if self.generation_stats["scenarios_matched"] else None,
+                "most_matched_scenario": (
+                    max(
+                        self.generation_stats["scenarios_matched"],
+                        key=self.generation_stats["scenarios_matched"].get,
+                    )
+                    if self.generation_stats["scenarios_matched"]
+                    else None
+                ),
             }
         except Exception as e:
             return {"error": str(e)}
@@ -1142,7 +1577,7 @@ class AdvancedSignalGenerator:
 
 # Экспорт классов
 __all__ = [
-    'AdvancedSignalGenerator',
-    'ScenarioMatch',
-    'TechnicalAnalysis',
+    "AdvancedSignalGenerator",
+    "ScenarioMatch",
+    "TechnicalAnalysis",
 ]

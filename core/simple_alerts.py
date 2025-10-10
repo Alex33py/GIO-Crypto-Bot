@@ -2,10 +2,12 @@
 # -*- coding: utf-8 -*-
 """
 Simple Alerts - Простые алерты (ликвидации, всплески объёмов, дисбалансы)
+ВЕРСИЯ С АНТИСПАМОМ
 """
 
 from typing import Dict, List
 from datetime import datetime
+import time
 from config.settings import logger
 
 
@@ -19,16 +21,23 @@ class SimpleAlertsSystem:
         """
         self.bot = bot_instance
 
-        # Пороги для алертов
-        self.volume_surge_threshold = 2.5  # Всплеск объёма x2.5
-        self.liquidation_threshold = 5_000_000  # $5M ликвидаций
-        self.imbalance_threshold = 0.7  # 70% дисбаланс buy/sell
+        # Пороги для алертов (УВЕЛИЧЕНЫ ДЛЯ АНТИСПАМА!)
+        self.volume_surge_threshold = 3.0  # 3x
+        self.liquidation_threshold = 10_000_000  # $10M
+        self.imbalance_threshold = 0.75  # 75%
 
         # История алертов (чтобы не спамить)
         self.recent_alerts = {}
         self.alert_cooldown = 300  # 5 минут между одинаковыми алертами
 
-        logger.info("✅ SimpleAlertsSystem инициализирована")
+        # Глобальный лимит
+        self.max_alerts_per_hour = 20
+        self.alert_history = []  # [(timestamp, alert_type, symbol), ...]
+
+        logger.info("✅ SimpleAlertsSystem инициализирована (АНТИСПАМ)")
+        logger.info(f"   📊 Volume Surge: ≥{self.volume_surge_threshold}x")
+        logger.info(f"   💰 Liquidations: ≥${self.liquidation_threshold:,.0f}")
+        logger.info(f"   ⚖️ Imbalance: ≥{self.imbalance_threshold*100:.0f}%")
 
 
     async def check_alerts(self, symbol: str, market_data: Dict):
@@ -200,12 +209,37 @@ class SimpleAlertsSystem:
 
 
     async def _send_alert(self, alert_type: str, symbol: str, message: str):
-        """Отправка алерта в Telegram"""
+        """Отправка алерта в Telegram с АНТИСПАМ защитой"""
         try:
-            if self.bot.telegram_handler:
-                await self.bot.telegram_handler.send_message(message)
+            # Проверка глобального лимита
+            now = time.time()
+            hour_ago = now - 3600
 
-            logger.info(f"🚨 Алерт отправлен: {alert_type} для {symbol}")
+            # Удаляем старые записи
+            self.alert_history = [
+                (ts, atype, sym) for ts, atype, sym in self.alert_history
+                if ts > hour_ago
+            ]
+
+            # Проверяем лимит
+            if len(self.alert_history) >= self.max_alerts_per_hour:
+                logger.warning(f"⚠️ Достигнут лимит алертов: {self.max_alerts_per_hour}/час")
+                return
+
+            # Отправляем
+            if self.bot.telegram_handler:
+                await self.bot.telegram_handler.application.bot.send_message(
+                    chat_id=self.bot.telegram_handler.chat_id,
+                    text=message,
+                    parse_mode='Markdown'
+                )
+
+                # Регистрируем отправку
+                self.alert_history.append((now, alert_type, symbol))
+
+                logger.info(f"✅ Алерт отправлен: {alert_type} для {symbol}")
+            else:
+                logger.warning("⚠️ telegram_handler не найден")
 
         except Exception as e:
             logger.error(f"❌ Ошибка отправки алерта: {e}")

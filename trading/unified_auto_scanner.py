@@ -85,8 +85,6 @@ class UnifiedAutoScanner:
                 try:
                     # Выполняем сканирование
                     await self.scan_market()
-
-                    # Ждём до следующего сканирования
                     await asyncio.sleep(self.interval_minutes * 60)
 
                 except Exception as e:
@@ -133,23 +131,34 @@ class UnifiedAutoScanner:
 
                             # Отправляем уведомление в Telegram
                             if (
-                                hasattr(self.bot, "telegram_bot")
-                                and self.bot.telegram_bot
+                                hasattr(self.bot, "telegram_handler")
+                                and self.bot.telegram_handler
                             ):
-                                await self.bot.telegram_bot.notify_new_signal(
-                                    {
-                                        "id": signal_id,
-                                        "symbol": symbol,
-                                        "direction": result["direction"],
-                                        "entry_price": result["entry_price"],
-                                        "tp1": result["tp1"],
-                                        "tp2": result["tp2"],
-                                        "tp3": result["tp3"],
-                                        "stop_loss": result["stop_loss"],
-                                        "quality_score": result.get("quality_score", 0),
-                                        "risk_reward": result.get("risk_reward", 0),
-                                    }
-                                )
+                                try:
+                                    await self.bot.telegram_handler.notify_new_signal(
+                                        {
+                                            "id": signal_id,
+                                            "symbol": symbol,
+                                            "direction": result["direction"],
+                                            "entry_price": result["entry_price"],
+                                            "tp1": result["tp1"],
+                                            "tp2": result["tp2"],
+                                            "tp3": result["tp3"],
+                                            "stop_loss": result["stop_loss"],
+                                            "quality_score": result.get(
+                                                "quality_score", 0
+                                            ),
+                                            "risk_reward": result.get("risk_reward", 0),
+                                            "timestamp": datetime.now(),
+                                        }
+                                    )
+                                    logger.info(
+                                        f"📨 Сигнал #{signal_id} отправлен в Telegram"
+                                    )
+                                except Exception as e:
+                                    logger.error(
+                                        f"❌ Ошибка отправки Telegram уведомления: {e}"
+                                    )
 
                     # Небольшая пауза между символами
                     await asyncio.sleep(0.5)
@@ -162,6 +171,116 @@ class UnifiedAutoScanner:
 
         except Exception as e:
             logger.error(f"❌ Ошибка scan_market: {e}")
+
+    # ✅ ДОБАВИТЬ ЭТОТ МЕТОД ЗДЕСЬ:
+    async def scan_symbol(self, symbol: str) -> Optional[Dict]:
+        """
+        Полное сканирование одного символа
+
+        Returns:
+            Dict с деталями сигнала если создан, иначе None
+        """
+        try:
+            logger.info(f"🔍 Сканирование {symbol}...")
+
+            # Используем существующий метод analyze_symbol
+            result = await self.analyze_symbol(symbol)
+
+            if not result or not result.get("signal"):
+                logger.debug(f"ℹ️ {symbol}: подходящих сигналов не найдено")
+                return None
+
+            # Сохраняем сигнал если есть recorder
+            if self.signal_recorder:
+                signal_id = self.signal_recorder.record_signal(
+                    symbol=symbol,
+                    direction=result["direction"],
+                    entry_price=result["entry_price"],
+                    stop_loss=result["stop_loss"],
+                    tp1=result["tp1"],
+                    tp2=result["tp2"],
+                    tp3=result["tp3"],
+                    scenario_id=result.get("scenario_id", "auto_scanner"),
+                    status="active",
+                    quality_score=result.get("quality_score", 0),
+                    risk_reward=result.get("risk_reward", 0),
+                )
+
+                logger.info(f"✅ {symbol}: Сигнал #{signal_id} создан")
+
+                # Отправляем уведомление в Telegram
+                if hasattr(self.bot, "telegram_handler") and self.bot.telegram_handler:
+                    try:
+                        await self.bot.telegram_handler.notify_new_signal(
+                            {
+                                "id": signal_id,
+                                "symbol": symbol,
+                                "direction": result["direction"],
+                                "entry_price": result["entry_price"],
+                                "tp1": result["tp1"],
+                                "tp2": result["tp2"],
+                                "tp3": result["tp3"],
+                                "stop_loss": result["stop_loss"],
+                                "quality_score": result.get("quality_score", 0),
+                                "risk_reward": result.get("risk_reward", 0),
+                                "status": result.get("status", "active"),
+                            }
+                        )
+                        logger.info(f"📨 Сигнал #{signal_id} отправлен в Telegram")
+                    except Exception as e:
+                        logger.error(f"❌ Ошибка отправки Telegram уведомления: {e}")
+                # ✅ ВОЗВРАЩАЕМ ВЕСЬ ОБЪЕКТ С ДЕТАЛЯМИ!
+                return {
+                    "signal_id": signal_id,
+                    "symbol": symbol,
+                    "direction": result["direction"],
+                    "entry_price": result["entry_price"],
+                    "stop_loss": result["stop_loss"],
+                    "tp1": result["tp1"],
+                    "tp2": result["tp2"],
+                    "tp3": result["tp3"],
+                    "quality_score": result.get("quality_score", 0),
+                    "risk_reward": result.get("risk_reward", 0),
+                    "status": result.get("status", "active"),
+                }
+
+            return None
+
+        except Exception as e:
+            logger.error(f"❌ Критическая ошибка scan_symbol {symbol}: {e}")
+            return None
+
+    async def scan_multiple_symbols(self, symbols: List[str]) -> List[Dict]:
+        """
+        Сканирование нескольких символов параллельно
+
+        Args:
+            symbols: Список символов
+
+        Returns:
+            Список ID сгенерированных сигналов
+        """
+        try:
+            tasks = [self.scan_symbol(symbol) for symbol in symbols]
+            results = await asyncio.gather(*tasks, return_exceptions=True)
+
+            # Фильтруем успешные результаты
+            signal_data = [
+                result
+                for result in results
+                if isinstance(result, dict) and result is not None
+            ]
+
+            if signal_data:
+                logger.info(
+                    f"✅ Сканирование завершено: {len(signal_data)} новых сигналов"
+                )
+
+            return signal_data
+
+        except Exception as e:
+            logger.error(f"❌ Ошибка scan_multiple_symbols: {e}")
+            return []
 
     async def analyze_symbol(self, symbol: str) -> Optional[Dict]:
         """
@@ -198,7 +317,6 @@ class UnifiedAutoScanner:
 
             # ========== ВАЛИДАЦИЯ VOLUME PROFILE ==========
             if volume_profile:
-                # Проверяем основные поля
                 poc = volume_profile.get("poc")
                 vah = volume_profile.get("vah")
                 val = volume_profile.get("val")
@@ -249,6 +367,71 @@ class UnifiedAutoScanner:
             # Проверяем успешность match
             if not match_result:
                 return None
+
+            # ========== ✅ CONFIRM FILTER + MULTI-TF FILTER ==========
+            # Применяем фильтры ПЕРЕД созданием сигнала
+            if hasattr(self.bot, "confirm_filter") or hasattr(
+                self.bot, "multi_tf_filter"
+            ):
+                logger.info(f"🔍 DEBUG для {symbol}:")
+                logger.info(
+                    f"   bot.confirm_filter = {getattr(self.bot, 'confirm_filter', None)}"
+                )
+                logger.info(
+                    f"   bot.multi_tf_filter = {getattr(self.bot, 'multi_tf_filter', None)}"
+                )
+
+                direction = match_result.get("direction", "LONG")
+
+                # 1. CONFIRM FILTER
+                if hasattr(self.bot, "confirm_filter") and self.bot.confirm_filter:
+                    logger.info(f"🔍 Применение Confirm Filter для {symbol}...")
+
+                    # ✅ ПРАВИЛЬНО: добавлен await!
+                    filters_passed = await self.bot.confirm_filter.validate(
+                        symbol, direction, market_data
+                    )
+
+                    if not filters_passed:
+                        logger.warning(
+                            f"❌ {symbol} {direction}: Сигнал ОТКЛОНЁН Confirm Filter"
+                        )
+                        return None
+
+                    logger.info(f"✅ {symbol}: Confirm Filter пройден")
+
+                # 2. MULTI-TF FILTER
+                if hasattr(self.bot, "multi_tf_filter") and self.bot.multi_tf_filter:
+                    logger.info(f"🔍 Применение Multi-TF Filter для {symbol}...")
+
+                    # Подготавливаем данные для фильтра
+                    signal_dict = {
+                        "symbol": symbol,
+                        "direction": direction,
+                        "entry_price": match_result.get("entry_price", 0),
+                    }
+
+                    # ✅ ПРАВИЛЬНО: validate (не validate_signal) + правильный порядок аргументов
+                    mtf_valid, mtf_reason = await self.bot.multi_tf_filter.validate(
+                        signal_dict,
+                        market_data,
+                        symbol,
+                    )
+
+                    if not mtf_valid:
+                        logger.warning(
+                            f"❌ {symbol} {direction}: Сигнал ОТКЛОНЁН Multi-TF Filter: {mtf_reason}"
+                        )
+                        return None  # Блокируем несогласованный сигнал!
+
+                    logger.info(f"✅ {symbol}: Multi-TF Filter пройден: {mtf_reason}")
+
+                logger.info(f"✅ {symbol}: ВСЕ ФИЛЬТРЫ ПРОЙДЕНЫ!")
+            else:
+                logger.warning(
+                    f"⚠️ {symbol}: Фильтры не найдены в bot, пропускаем проверку"
+                )
+            # =========================================================
 
             # Проверяем status (observation не считается сигналом)
             if match_result.get("status") == "observation":

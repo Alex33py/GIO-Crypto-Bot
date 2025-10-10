@@ -156,6 +156,42 @@ class UnifiedAutoScanner:
                 # Не критично, продолжаем
                 mtf_trends = {}
 
+            logger.info(f"📊 MTF Alignment: {symbol}")
+
+            # Получаем данные свечей для проверки
+            candles_data = await self._get_candles_for_mtf(symbol)
+
+            # Проверяем MTF alignment через trenddetector
+            if hasattr(self.bot, "mtf_detector") and hasattr(
+                self.bot.mtf_detector, "check_mtf_alignment"
+            ):
+                mtf_alignment = self.bot.mtf_detector.check_mtf_alignment(
+                    symbol=symbol, candles_data=candles_data
+                )
+
+                logger.info(f"   Aligned: {mtf_alignment['aligned']}")
+                logger.info(f"   Direction: {mtf_alignment['direction']}")
+                logger.info(f"   Strength: {mtf_alignment['strength']}%")
+                logger.info(f"   Agreement: {mtf_alignment['agreement_score']}%")
+                logger.info(
+                    f"   Trends: 1H={mtf_alignment['trends'].get('1H', 'N/A')}, "
+                    f"4H={mtf_alignment['trends'].get('4H', 'N/A')}, "
+                    f"1D={mtf_alignment['trends'].get('1D', 'N/A')}"
+                )
+                logger.info(f"   📝 {mtf_alignment['recommendation']}")
+
+                # ✅ ФИЛЬТР: Отклонить сигнал если MTF слабый
+                if mtf_alignment["strength"] < 60:
+                    logger.warning(
+                        f"⚠️ {symbol}: Signal filtered (MTF strength: {mtf_alignment['strength']}%)"
+                    )
+                    return None
+
+                # Добавляем MTF alignment в контекст для последующего использования
+                mtf_trends["alignment"] = mtf_alignment
+            else:
+                logger.debug(f"ℹ️ {symbol}: MTF alignment checker не доступен")
+
             # Шаг 4: Получаем Volume Profile
             volume_profile = await self._get_volume_profile(symbol)
             if not volume_profile:
@@ -319,24 +355,121 @@ class UnifiedAutoScanner:
     # ========== ВСПОМОГАТЕЛЬНЫЕ МЕТОДЫ ==========
 
     async def _get_market_data(self, symbol: str) -> Optional[Dict]:
-        """Получение текущих рыночных данных"""
+        """
+        Получение текущих рыночных данных с кросс-биржевой валидацией
+
+        Returns:
+            Dict с рыночными данными ИЛИ None если расхождение > 0.5%
+        """
         try:
+            # ========== 1. ПОЛУЧЕНИЕ ДАННЫХ С BYBIT (основной источник) ==========
             ticker = await self.bot.bybit_connector.get_ticker(symbol)
             if not ticker:
                 return None
 
-            return {
+            bybit_price = float(ticker.get("last_price", 0))
+
+            if bybit_price <= 0:
+                logger.warning(f"⚠️ {symbol}: Невалидная цена Bybit")
+                return None
+
+            # ========== 2. КРОСС-БИРЖЕВАЯ ВАЛИДАЦИЯ ЦЕН ==========
+            prices = {"bybit": bybit_price}
+
+            # Получаем цены с других бирж
+            try:
+                # Binance
+                if (
+                    hasattr(self.bot, "binance_connector")
+                    and self.bot.binance_connector
+                ):
+                    try:
+                        binance_ticker = await self.bot.binance_connector.get_ticker(
+                            symbol
+                        )
+                        if binance_ticker and "lastPrice" in binance_ticker:
+                            binance_price = float(binance_ticker["lastPrice"])
+                            if binance_price > 0:
+                                prices["binance"] = binance_price
+                    except Exception as e:
+                        logger.debug(f"⚠️ {symbol}: Binance ticker error: {e}")
+
+                # OKX
+                if hasattr(self.bot, "okx_connector") and self.bot.okx_connector:
+                    try:
+                        okx_symbol = symbol.replace(
+                            "USDT", "-USDT"
+                        )  # BTCUSDT → BTC-USDT
+                        okx_ticker = await self.bot.okx_connector.get_ticker(okx_symbol)
+                        if okx_ticker and "last_price" in okx_ticker:
+                            okx_price = float(okx_ticker["last_price"])
+                            if okx_price > 0:
+                                prices["okx"] = okx_price
+                    except Exception as e:
+                        logger.debug(f"⚠️ {symbol}: OKX ticker error: {e}")
+
+                # Coinbase
+                if (
+                    hasattr(self.bot, "coinbase_connector")
+                    and self.bot.coinbase_connector
+                ):
+                    try:
+                        cb_symbol = symbol.replace("USDT", "-USD")  # BTCUSDT → BTC-USD
+                        cb_ticker = await self.bot.coinbase_connector.get_ticker(
+                            cb_symbol
+                        )
+                        if cb_ticker and "last_price" in cb_ticker:
+                            cb_price = float(cb_ticker["last_price"])
+                            if cb_price > 0:
+                                prices["coinbase"] = cb_price
+                    except Exception as e:
+                        logger.debug(f"⚠️ {symbol}: Coinbase ticker error: {e}")
+
+            except Exception as e:
+                logger.warning(f"⚠️ {symbol}: Ошибка получения кросс-биржевых цен: {e}")
+
+            # ========== 3. ПРОВЕРКА РАСХОЖДЕНИЯ ЦЕН ==========
+            spread_pct = 0
+            if len(prices) >= 2:
+                price_values = list(prices.values())
+                max_price = max(price_values)
+                min_price = min(price_values)
+                spread_pct = ((max_price - min_price) / min_price) * 100
+
+                # Логируем цены
+                price_str = " | ".join([f"{k}: ${v:,.2f}" for k, v in prices.items()])
+                logger.info(
+                    f"💱 {symbol} Cross-Exchange: {price_str} | Spread: {spread_pct:.2f}%"
+                )
+
+                # ❌ VETO если спред > 0.5%
+                if spread_pct > 0.5:
+                    logger.warning(
+                        f"⚠️ {symbol}: CROSS-EXCHANGE VETO! Спред {spread_pct:.2f}% > 0.5% "
+                        f"(min: ${min_price:,.2f}, max: ${max_price:,.2f})"
+                    )
+                    return None  # ❌ Не создаём сигнал!
+
+            # ========== 4. ФОРМИРОВАНИЕ ДАННЫХ ==========
+            market_data = {
                 "symbol": symbol,
-                "price": float(ticker.get("last_price", 0)),
-                "current_price": float(ticker.get("last_price", 0)),
+                "price": bybit_price,
+                "current_price": bybit_price,
                 "volume_24h": float(ticker.get("volume_24h", 0)),
                 "price_24h_pcnt": float(ticker.get("price_24h_pcnt", 0)),
                 "high_24h": float(ticker.get("high_24h", 0)),
                 "low_24h": float(ticker.get("low_24h", 0)),
                 "timestamp": datetime.now().isoformat(),
+                # Добавляем кросс-биржевые данные
+                "cross_exchange_prices": prices,
+                "cross_exchange_spread": round(spread_pct, 2),
+                "cross_exchange_count": len(prices),
             }
+
+            return market_data
+
         except Exception as e:
-            logger.error(f"❌ Ошибка получения market_data: {e}")
+            logger.error(f"❌ Ошибка получения market_data для {symbol}: {e}")
             return None
 
     async def _get_indicators(self, symbol: str) -> Optional[Dict]:
@@ -433,6 +566,45 @@ class UnifiedAutoScanner:
         except Exception as e:
             logger.error(f"❌ Ошибка получения VETO: {e}")
             return {"has_veto": False, "veto_reasons": []}
+
+    async def _get_candles_for_mtf(self, symbol: str) -> Optional[Dict]:
+        """
+        Получение свечей для MTF анализа
+
+        Returns:
+            Dict с ключами '1H', '4H', '1D' содержащими DataFrame или list
+        """
+        try:
+            candles_data = {}
+
+            # Получаем свечи через Bybit connector
+            if hasattr(self.bot, "bybit_connector"):
+                # 1H свечи (последние 100)
+                candles_1h = await self.bot.bybit_connector.get_klines(
+                    symbol=symbol, interval="60", limit=100  # 1 hour
+                )
+                if candles_1h:
+                    candles_data["1H"] = candles_1h
+
+                # 4H свечи (последние 50)
+                candles_4h = await self.bot.bybit_connector.get_klines(
+                    symbol=symbol, interval="240", limit=50  # 4 hours
+                )
+                if candles_4h:
+                    candles_data["4H"] = candles_4h
+
+                # 1D свечи (последние 30)
+                candles_1d = await self.bot.bybit_connector.get_klines(
+                    symbol=symbol, interval="D", limit=30  # 1 day
+                )
+                if candles_1d:
+                    candles_data["1D"] = candles_1d
+
+            return candles_data if candles_data else None
+
+        except Exception as e:
+            logger.error(f"❌ Ошибка получения свечей для MTF: {e}")
+            return None
 
     async def _calculate_tpsl(
         self,

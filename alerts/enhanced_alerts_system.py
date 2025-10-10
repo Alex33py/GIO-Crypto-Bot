@@ -429,14 +429,7 @@ class EnhancedAlertsSystem:
             logger.error(f"❌ Ошибка check_news_alerts: {e}")
 
     async def send_alert(self, alert_type: str, message: str, priority: str = "medium"):
-        """
-        Отправка алерта в Telegram
-
-        Args:
-            alert_type: Тип алерта (l2_imbalance, liquidations, volume_spike, news)
-            message: Текст сообщения
-            priority: Приоритет (low, medium, high)
-        """
+        """Отправка алерта в Telegram"""
         try:
             # Обновляем статистику
             self.alerts_count[alert_type] += 1
@@ -445,12 +438,20 @@ class EnhancedAlertsSystem:
             # Логируем
             logger.info(f"📨 Отправка алерта [{alert_type}]: {message[:50]}...")
 
-            # Отправляем в Telegram
-            if self.telegram_bot and hasattr(self.telegram_bot, "send_alert"):
-                try:
-                    await self.telegram_bot.send_alert(message, priority=priority)
-                except Exception as e:
-                    logger.warning(f"⚠️ Не удалось отправить в Telegram: {e}")
+            # ✅ ИСПРАВЛЕНО: Прямой вызов Telegram API
+            if hasattr(self, "bot") and hasattr(self.bot, "telegram_handler"):
+                if self.bot.telegram_handler:
+                    try:
+                        await self.bot.telegram_handler.application.bot.send_message(
+                            chat_id=self.bot.telegram_handler.chat_id,
+                            text=message,
+                            parse_mode="HTML",
+                        )
+                        logger.info(f"✅ Алерт отправлен в Telegram: {alert_type}")
+                    except Exception as e:
+                        logger.error(f"❌ Ошибка отправки в Telegram: {e}")
+            else:
+                logger.warning("⚠️ telegram_handler не найден")
 
         except Exception as e:
             logger.error(f"❌ Ошибка send_alert: {e}")

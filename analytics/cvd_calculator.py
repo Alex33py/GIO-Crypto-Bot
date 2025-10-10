@@ -1,260 +1,311 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Cumulative Volume Delta (CVD) Calculator
-Накопительная дельта объёмов для определения давления покупателей/продавцов
+CVD Calculator - Cumulative Volume Delta
+Отслеживает накопленный дисбаланс покупок/продаж
 """
 
-import time
-from typing import List, Dict, Optional
-from collections import deque
+import asyncio
+from collections import deque, defaultdict
+from typing import Dict, Optional, Tuple
+from datetime import datetime, timedelta
+
 from config.settings import logger
-from utils.validators import DataValidator
-from utils.error_logger import ErrorLogger
 
 
-class CumulativeVolumeDelta:
+class CVDCalculator:
     """
-    Расчёт CVD для определения накопительного давления
+    Калькулятор Cumulative Volume Delta (CVD)
 
-    CVD растёт = преобладают покупки (BUY pressure)
-    CVD падает = преобладают продажи (SELL pressure)
+    CVD = Cumulative(BUY_VOLUME - SELL_VOLUME)
+    Показывает преобладание покупателей или продавцов
     """
 
-    def __init__(self, max_history: int = 10000):
+    def __init__(self, window_size: int = 100):
         """
-        Инициализация CVD Calculator
+        Args:
+            window_size: Размер окна для rolling CVD (количество trades)
+        """
+        self.window_size = window_size
+
+        # Cumulative CVD (от начала сессии)
+        self.cumulative_cvd: Dict[str, float] = defaultdict(float)
+
+        # Rolling CVD (последние N trades)
+        self.rolling_trades: Dict[str, deque] = defaultdict(
+            lambda: deque(maxlen=window_size)
+        )
+
+        # Trade history для анализа
+        self.trade_history: Dict[str, list] = defaultdict(list)
+
+        # CVD trend detection
+        self.cvd_trend: Dict[str, str] = defaultdict(lambda: "NEUTRAL")
+
+        # Statistics
+        self.stats = {
+            "total_trades": 0,
+            "buy_volume": defaultdict(float),
+            "sell_volume": defaultdict(float),
+        }
+
+        logger.info("✅ CVDCalculator инициализирован (window: %d)", window_size)
+
+    def update(
+        self, symbol: str, side: str, volume: float, price: float, timestamp: int = None
+    ) -> float:
+        """
+        Обновить CVD на основе нового trade
 
         Args:
-            max_history: Максимальное количество точек в истории
-        """
-        self.cvd = 0.0
-        self.history = deque(maxlen=max_history)
-        self.total_buy_volume = 0.0
-        self.total_sell_volume = 0.0
-        self.last_update = time.time()
-
-        logger.info(f"✅ CVD Calculator инициализирован (max_history={max_history})")
-
-    def update(self, trades: List[Dict]) -> float:
-        """
-        Обновить CVD на основе aggTrades
-
-        Args:
-            trades: Список сделок с полями [price, size, side, timestamp]
+            symbol: Символ (BTCUSDT)
+            side: BUY или SELL
+            volume: Объем сделки
+            price: Цена сделки
+            timestamp: Unix timestamp (ms)
 
         Returns:
-            Текущее значение CVD
+            Current cumulative CVD
         """
-        try:
-            # Валидация входных данных
-            if not trades or not isinstance(trades, list):
-                logger.warning("⚠️ Невалидные trades для CVD")
-                return self.cvd
+        if timestamp is None:
+            timestamp = int(datetime.now().timestamp() * 1000)
 
-            # Обрабатываем каждую сделку
-            for trade in trades:
-                try:
-                    side = trade.get("side", "").upper()
-                    size = float(trade.get("size", 0))
+        # Delta для этого trade
+        delta = volume if side == "BUY" else -volume
 
-                    if side == "BUY":
-                        self.cvd += size
-                        self.total_buy_volume += size
-                    elif side == "SELL":
-                        self.cvd -= size
-                        self.total_sell_volume += size
-                    else:
-                        logger.warning(f"⚠️ Неизвестная сторона сделки: {side}")
+        # Update cumulative CVD
+        self.cumulative_cvd[symbol] += delta
 
-                except (ValueError, TypeError) as e:
-                    logger.warning(f"⚠️ Ошибка обработки trade: {e}")
-                    continue
+        # Add to rolling window
+        trade_data = {
+            "timestamp": timestamp,
+            "side": side,
+            "volume": volume,
+            "price": price,
+            "delta": delta,
+        }
+        self.rolling_trades[symbol].append(trade_data)
 
-            # Сохраняем в историю
-            self.history.append({
-                "timestamp": time.time(),
-                "cvd": self.cvd,
-                "buy_volume": self.total_buy_volume,
-                "sell_volume": self.total_sell_volume
-            })
+        # Add to history (keep last 1000)
+        self.trade_history[symbol].append(trade_data)
+        if len(self.trade_history[symbol]) > 1000:
+            self.trade_history[symbol] = self.trade_history[symbol][-1000:]
 
-            self.last_update = time.time()
+        # Update statistics
+        self.stats["total_trades"] += 1
+        if side == "BUY":
+            self.stats["buy_volume"][symbol] += volume
+        else:
+            self.stats["sell_volume"][symbol] += volume
 
-            logger.debug(
-                f"📊 CVD обновлён: {self.cvd:,.2f} "
-                f"(+{self.total_buy_volume:,.2f} / -{self.total_sell_volume:,.2f})"
-            )
+        # Update trend
+        self._update_trend(symbol)
 
-            return self.cvd
+        return self.cumulative_cvd[symbol]
 
-        except Exception as e:
-            ErrorLogger.log_calculation_error(
-                calculation_name="CVD Update",
-                input_data={"trades_count": len(trades) if trades else 0},
-                error=e
-            )
-            return self.cvd
+    def get_cvd(self, symbol: str) -> float:
+        """Получить текущий cumulative CVD"""
+        return self.cumulative_cvd.get(symbol, 0.0)
 
-    def get_trend(self, lookback_periods: int = 10) -> str:
+    def get_rolling_cvd(self, symbol: str) -> float:
+        """Получить rolling CVD (последние N trades)"""
+        if symbol not in self.rolling_trades:
+            return 0.0
+
+        return sum(trade["delta"] for trade in self.rolling_trades[symbol])
+
+    def get_cvd_trend(self, symbol: str, window: int = None) -> Dict:
         """
-        Определить тренд CVD
+        Получить CVD trend и силу тренда
 
         Args:
-            lookback_periods: Количество последних периодов для анализа
+            symbol: Символ
+            window: Количество trades для анализа (по умолчанию self.window_size)
 
         Returns:
-            "BULLISH", "BEARISH" или "NEUTRAL"
-        """
-        try:
-            if len(self.history) < lookback_periods:
-                return "NEUTRAL"
-
-            recent = list(self.history)[-lookback_periods:]
-
-            # Проверка на последовательный рост
-            if all(recent[i]["cvd"] > recent[i-1]["cvd"] for i in range(1, len(recent))):
-                return "BULLISH"
-
-            # Проверка на последовательное падение
-            elif all(recent[i]["cvd"] < recent[i-1]["cvd"] for i in range(1, len(recent))):
-                return "BEARISH"
-
-            # Проверка средней дельты
-            else:
-                cvd_values = [p["cvd"] for p in recent]
-                avg_delta = (cvd_values[-1] - cvd_values[0]) / len(cvd_values)
-
-                if avg_delta > 0:
-                    return "BULLISH"
-                elif avg_delta < 0:
-                    return "BEARISH"
-                else:
-                    return "NEUTRAL"
-
-        except Exception as e:
-            logger.error(f"❌ Ошибка определения CVD тренда: {e}")
-            return "NEUTRAL"
-
-    def get_divergence(self, price_history: List[float]) -> Optional[str]:
-        """
-        Определить дивергенцию между CVD и ценой
-
-        Бычья дивергенция: цена падает, CVD растёт → разворот вверх
-        Медвежья дивергенция: цена растёт, CVD падает → разворот вниз
-
-        Args:
-            price_history: История цен (соответствует истории CVD)
-
-        Returns:
-            "BULLISH_DIV", "BEARISH_DIV" или None
-        """
-        try:
-            if len(self.history) < 20 or len(price_history) < 20:
-                return None
-
-            # Последние 20 значений
-            recent_cvd = [p["cvd"] for p in list(self.history)[-20:]]
-            recent_prices = price_history[-20:]
-
-            # Тренды
-            cvd_trend = recent_cvd[-1] - recent_cvd[0]
-            price_trend = recent_prices[-1] - recent_prices[0]
-
-            # Бычья дивергенция
-            if price_trend < 0 and cvd_trend > 0:
-                logger.info("📈 БЫЧЬЯ ДИВЕРГЕНЦИЯ: цена↓, CVD↑")
-                return "BULLISH_DIV"
-
-            # Медвежья дивергенция
-            elif price_trend > 0 and cvd_trend < 0:
-                logger.info("📉 МЕДВЕЖЬЯ ДИВЕРГЕНЦИЯ: цена↑, CVD↓")
-                return "BEARISH_DIV"
-
-            return None
-
-        except Exception as e:
-            logger.error(f"❌ Ошибка определения дивергенции: {e}")
-            return None
-
-    def get_statistics(self, last_n_seconds: int = 300) -> Dict:
-        """
-        Получить статистику CVD за последние N секунд
-
-        Args:
-            last_n_seconds: Временной интервал (секунды)
-
-        Returns:
-            Словарь со статистикой
-        """
-        try:
-            now = time.time()
-            cutoff = now - last_n_seconds
-
-            recent = [p for p in self.history if p["timestamp"] >= cutoff]
-
-            if not recent:
-                return {
-                    "cvd": self.cvd,
-                    "trend": "NEUTRAL",
-                    "buy_volume": 0,
-                    "sell_volume": 0,
-                    "buy_sell_ratio": 0,
-                    "delta": 0
-                }
-
-            cvd_values = [p["cvd"] for p in recent]
-            buy_volumes = [p["buy_volume"] for p in recent]
-            sell_volumes = [p["sell_volume"] for p in recent]
-
-            buy_vol = buy_volumes[-1] - buy_volumes[0]
-            sell_vol = sell_volumes[-1] - sell_volumes[0]
-
-            buy_sell_ratio = buy_vol / sell_vol if sell_vol > 0 else 0
-
-            delta = cvd_values[-1] - cvd_values[0]
-
-            trend = "BULLISH" if delta > 0 else "BEARISH" if delta < 0 else "NEUTRAL"
-
-            return {
-                "cvd": self.cvd,
-                "trend": trend,
-                "buy_volume": buy_vol,
-                "sell_volume": sell_vol,
-                "buy_sell_ratio": buy_sell_ratio,
-                "delta": delta,
-                "period_seconds": last_n_seconds
+            {
+                'trend': 'BULLISH' | 'BEARISH' | 'NEUTRAL',
+                'strength': 0-100,
+                'cvd': current CVD,
+                'rolling_cvd': rolling CVD,
+                'delta_ma': moving average of deltas
             }
-
-        except Exception as e:
-            logger.error(f"❌ Ошибка расчёта CVD статистики: {e}")
+        """
+        if symbol not in self.rolling_trades:
             return {
-                "cvd": self.cvd,
                 "trend": "NEUTRAL",
-                "buy_volume": 0,
-                "sell_volume": 0,
-                "buy_sell_ratio": 0,
-                "delta": 0
+                "strength": 0,
+                "cvd": 0.0,
+                "rolling_cvd": 0.0,
+                "delta_ma": 0.0,
             }
 
-    def reset(self):
-        """Сбросить CVD (для тестирования или новых сессий)"""
-        self.cvd = 0.0
-        self.history.clear()
-        self.total_buy_volume = 0.0
-        self.total_sell_volume = 0.0
-        logger.info("🔄 CVD сброшен")
+        window = window or self.window_size
+        trades = list(self.rolling_trades[symbol])[-window:]
 
-    def get_current_cvd(self) -> float:
-        """Получить текущее значение CVD"""
-        return self.cvd
+        if not trades:
+            return {
+                "trend": "NEUTRAL",
+                "strength": 0,
+                "cvd": self.get_cvd(symbol),
+                "rolling_cvd": 0.0,
+                "delta_ma": 0.0,
+            }
 
-    def get_buy_sell_ratio(self) -> float:
-        """Получить соотношение покупок к продажам"""
-        if self.total_sell_volume == 0:
-            return 0
-        return self.total_buy_volume / self.total_sell_volume
+        # Calculate rolling CVD
+        rolling_cvd = sum(t["delta"] for t in trades)
+
+        # Calculate delta moving average
+        delta_ma = rolling_cvd / len(trades) if trades else 0.0
+
+        # Determine trend
+        cumulative_cvd = self.get_cvd(symbol)
+
+        # Trend logic
+        if rolling_cvd > 0 and delta_ma > 0:
+            trend = "BULLISH"
+            # Strength based on how positive rolling_cvd is
+            max_volume = sum(t["volume"] for t in trades)
+            strength = (
+                min(100, int((rolling_cvd / max_volume) * 100))
+                if max_volume > 0
+                else 50
+            )
+        elif rolling_cvd < 0 and delta_ma < 0:
+            trend = "BEARISH"
+            max_volume = sum(t["volume"] for t in trades)
+            strength = (
+                min(100, int((abs(rolling_cvd) / max_volume) * 100))
+                if max_volume > 0
+                else 50
+            )
+        else:
+            trend = "NEUTRAL"
+            strength = 50
+
+        return {
+            "trend": trend,
+            "strength": strength,
+            "cvd": cumulative_cvd,
+            "rolling_cvd": rolling_cvd,
+            "delta_ma": delta_ma,
+        }
+
+    def _update_trend(self, symbol: str):
+        """Внутренний метод для обновления тренда"""
+        trend_data = self.get_cvd_trend(symbol)
+        self.cvd_trend[symbol] = trend_data["trend"]
+
+    def get_cvd_divergence(self, symbol: str, price_trend: str) -> Dict:
+        """
+        Обнаружить дивергенцию между CVD и ценой
+
+        Args:
+            symbol: Символ
+            price_trend: 'UPTREND' | 'DOWNTREND' | 'NEUTRAL'
+
+        Returns:
+            {
+                'divergence': bool,
+                'type': 'BULLISH' | 'BEARISH' | 'NONE',
+                'strength': 0-100
+            }
+        """
+        cvd_data = self.get_cvd_trend(symbol)
+        cvd_trend = cvd_data["trend"]
+
+        # Bullish divergence: Price down, CVD up
+        if price_trend == "DOWNTREND" and cvd_trend == "BULLISH":
+            return {
+                "divergence": True,
+                "type": "BULLISH",
+                "strength": cvd_data["strength"],
+            }
+
+        # Bearish divergence: Price up, CVD down
+        if price_trend == "UPTREND" and cvd_trend == "BEARISH":
+            return {
+                "divergence": True,
+                "type": "BEARISH",
+                "strength": cvd_data["strength"],
+            }
+
+        return {"divergence": False, "type": "NONE", "strength": 0}
+
+    def get_buy_sell_ratio(self, symbol: str, window: int = None) -> Dict:
+        """
+        Получить соотношение BUY/SELL
+
+        Returns:
+            {
+                'buy_volume': float,
+                'sell_volume': float,
+                'ratio': float (buy/sell),
+                'buy_percent': 0-100,
+                'sell_percent': 0-100
+            }
+        """
+        window = window or self.window_size
+        trades = (
+            list(self.rolling_trades[symbol])[-window:]
+            if symbol in self.rolling_trades
+            else []
+        )
+
+        buy_volume = sum(t["volume"] for t in trades if t["side"] == "BUY")
+        sell_volume = sum(t["volume"] for t in trades if t["side"] == "SELL")
+        total_volume = buy_volume + sell_volume
+
+        ratio = buy_volume / sell_volume if sell_volume > 0 else float("inf")
+        buy_percent = (buy_volume / total_volume * 100) if total_volume > 0 else 0
+        sell_percent = (sell_volume / total_volume * 100) if total_volume > 0 else 0
+
+        return {
+            "buy_volume": buy_volume,
+            "sell_volume": sell_volume,
+            "ratio": ratio,
+            "buy_percent": buy_percent,
+            "sell_percent": sell_percent,
+        }
+
+    def reset(self, symbol: str = None):
+        """Сбросить CVD для символа или всех символов"""
+        if symbol:
+            self.cumulative_cvd[symbol] = 0.0
+            self.rolling_trades[symbol].clear()
+            self.trade_history[symbol].clear()
+            self.stats["buy_volume"][symbol] = 0.0
+            self.stats["sell_volume"][symbol] = 0.0
+        else:
+            self.cumulative_cvd.clear()
+            self.rolling_trades.clear()
+            self.trade_history.clear()
+            self.stats["buy_volume"].clear()
+            self.stats["sell_volume"].clear()
+            self.stats["total_trades"] = 0
+
+        logger.info(f"🔄 CVD reset: {symbol if symbol else 'ALL'}")
+
+    def get_stats(self, symbol: str = None) -> Dict:
+        """Получить статистику CVD"""
+        if symbol:
+            return {
+                "symbol": symbol,
+                "cumulative_cvd": self.cumulative_cvd.get(symbol, 0.0),
+                "rolling_cvd": self.get_rolling_cvd(symbol),
+                "trend": self.cvd_trend.get(symbol, "NEUTRAL"),
+                "buy_volume": self.stats["buy_volume"].get(symbol, 0.0),
+                "sell_volume": self.stats["sell_volume"].get(symbol, 0.0),
+                "trades_count": len(self.trade_history.get(symbol, [])),
+            }
+        else:
+            return {
+                "total_trades": self.stats["total_trades"],
+                "symbols": list(self.cumulative_cvd.keys()),
+                "stats_by_symbol": {
+                    sym: self.get_stats(sym) for sym in self.cumulative_cvd.keys()
+                },
+            }
 
 
 # Экспорт
-__all__ = ['CumulativeVolumeDelta']
+__all__ = ["CVDCalculator"]

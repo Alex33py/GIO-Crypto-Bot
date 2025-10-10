@@ -69,9 +69,10 @@ class TelegramBotHandler:
             self.application.add_handler(CommandHandler("remove", self.cmd_remove))
             self.application.add_handler(CommandHandler("enable", self.cmd_enable))
             self.application.add_handler(CommandHandler("disable", self.cmd_disable))
-            self.application.add_handler(
-                CommandHandler("available", self.cmd_available)
-            )
+            self.application.add_handler(CommandHandler("available", self.cmd_available))
+            self.application.add_handler(CommandHandler("roi", self.cmd_roi))
+            self.application.add_handler(CommandHandler("mtf", self.cmd_mtf))
+            self.application.add_handler(CommandHandler("filters", self.cmd_filters))
 
             logger.info("✅ Telegram bot команды зарегистрированы")
             return True
@@ -198,14 +199,19 @@ class TelegramBotHandler:
 
             text = (
                 "📋 *ДОСТУПНЫЕ КОМАНДЫ:*\n\n"
+                "*🎯 Торговля:* ⭐ НОВОЕ\n"
+                "• /roi — Активные сигналы с P&L\n"
+                "• /roi [SYMBOL] — ROI для конкретного символа\n"
+                "• /trades \\[days\\] — Журнал сделок\n"
+                "• /stats \\[days\\] — Статистика по сделкам\n\n"
+                "*🔍 Фильтры:* ⭐ НОВОЕ\n"
+                "• /filters — Статус фильтров (Confirm + Multi-TF)\n"
+                "• /mtf [SYMBOL] — Multi-Timeframe тренды\n\n"
                 "*Основные:*\n"
                 "• /status — Статус системы\n"
                 "• /analyze \\[SYMBOL\\] — Анализ актива\n"
-                '• /analyze\\_batching \\\\[SYMBOL|ALL\\\\] — Анализ с батчингом (ALL = все пары)\\n"\r\n'
+                '• /analyze\\_batching \\[SYMBOL|ALL\\] — Анализ с батчингом (ALL = все пары)\n'
                 "• /signals \\[N\\] — Последние N сигналов\n\n"
-                "*Торговля:*\n"
-                "• /trades \\[days\\] — Журнал сделок\n"
-                "• /stats \\[days\\] — Статистика по закрытым сделкам\n\n"
                 "*Управление парами:* \n"
                 "• /pairs — Список всех пар\n"
                 "• /add SYMBOL — Добавить новую пару\n"
@@ -222,20 +228,17 @@ class TelegramBotHandler:
                 "• /autosignals \\[on|off\\] — Автообновление сигналов\n\n"
                 "*Справка:*\n"
                 "• /help — Эта справка\n\n"
-                "💡 *Примеры управления парами:*\n"
-                "• `/add ETHUSDT` — добавить Ethereum\n"
-                "• `/add BNBUSDT 3` — добавить BNB с приоритетом 3\n"
-                "• `/pairs` — показать все пары\n"
-                "• `/available` — список популярных пар\n\n"
-                "💡 *Примеры использования:*\n"
+                "💡 *Примеры:*\n"
+                "• `/roi` — все активные позиции ⭐\n"
+                "• `/roi BTCUSDT` — ROI для BTC ⭐\n"
+                "• `/mtf BTCUSDT` — тренды по таймфреймам ⭐\n"
+                "• `/filters` — статус фильтров ⭐\n"
                 "• `/analyze BTCUSDT`\n"
-                '• `/analyze_batching ETHUSDT`\\n"\r\n'
-                '• `/analyze_batching ALL` — 🔥 *МАССОВЫЙ АНАЛИЗ*\\n"\r\n'
                 "• `/trades 7`\n"
-                "• `/stats 30`\n"
                 "• `/export BTCUSDT 90`\n"
                 "• `/autosignals on`"
             )
+
 
             await update.message.reply_text(text, parse_mode=ParseMode.MARKDOWN)
             logger.info(f"✅ /help отправлен пользователю {username}")
@@ -436,30 +439,19 @@ class TelegramBotHandler:
         try:
             start_time = time.time()
 
-            # Визначення символів
+            # Определение символов
             if not context.args:
                 symbols = ["BTCUSDT"]
                 mode = "single"
             elif context.args[0].upper() == "ALL":
                 try:
-                    # ========== ВАЖЛИВО: ПРАВИЛЬНИЙ ДОСТУП ДО tracked_symbols ==========
-                    if (
-                        hasattr(self.bot_instance, "tracked_symbols")
-                        and self.bot_instance.tracked_symbols
-                    ):
-                        symbols = list(self.bot_instance.tracked_symbols.keys())
-                    else:
-                        # Fallback на TRACKED_SYMBOLS з config
-                        from config.settings import TRACKED_SYMBOLS
-
-                        symbols = TRACKED_SYMBOLS
-
+                    from config.settings import TRACKED_SYMBOLS
+                    symbols = TRACKED_SYMBOLS
                     mode = "all"
 
                     if not symbols:
                         await update.message.reply_text(
-                            "❌ Нет активных пар для анализа!\n"
-                            "Используйте /add для добавления пар.",
+                            "❌ Нет активных пар для анализа!",
                             parse_mode=ParseMode.MARKDOWN,
                         )
                         return
@@ -474,7 +466,7 @@ class TelegramBotHandler:
                 symbols = [context.args[0].upper()]
                 mode = "single"
 
-            # Початкове повідомлення
+            # Начальное сообщение
             if mode == "all":
                 await update.message.reply_text(
                     f"📊 *МАССОВЫЙ АНАЛИЗ С БАТЧИНГОМ*\n\n"
@@ -485,8 +477,8 @@ class TelegramBotHandler:
                 )
             else:
                 await update.message.reply_text(
-                    f"📊 Запуск анализа *{symbols[0]}* с БАТЧИНГОМ...\n"
-                    f"Получаем 1H, 4H, 1D свечи параллельно...",
+                    f"📊 Анализ *{symbols[0]}*...\n"
+                    f"⚡ Получение данных...",
                     parse_mode=ParseMode.MARKDOWN,
                 )
 
@@ -543,27 +535,19 @@ class TelegramBotHandler:
                         )
                     )
                 else:
-                    # Формируем строки результатов с emoji
                     result_lines = []
                     for r in successful:
-                        vp = r["result"].get("volume_profile", {})
-                        imbalance = abs(vp.get("imbalance", 0))
-                        pressure = vp.get("pressure", "N/A")
+                        signal_id = r["result"].get("signal_id")
+                        score = r["result"].get("score", 0)
 
-                        # Emoji по давлению
-                        if pressure == "BUYING":
-                            emoji = "🟢"
-                            pressure_text = "BUYING (покупатели)"
-                        elif pressure == "SELLING":
-                            emoji = "🔴"
-                            pressure_text = "SELLING (продавцы)"
+                        if signal_id:
+                            result_lines.append(
+                                f"• *{r['symbol']}:* {score:>5.1f}% 🎯 Сигнал #{signal_id}"
+                            )
                         else:
-                            emoji = "⚪"
-                            pressure_text = "NEUTRAL"
-
-                        result_lines.append(
-                            f"• *{r['symbol']}:* {imbalance:>5.1f}% {emoji} {pressure_text}"
-                        )
+                            result_lines.append(
+                                f"• *{r['symbol']}:* {score:>5.1f}% ⚪ NEUTRAL"
+                            )
 
                     avg_time = sum([r["time"] for r in successful]) / len(successful)
                     message = (
@@ -576,61 +560,31 @@ class TelegramBotHandler:
                     )
 
             else:
-                # ОДИНОЧНЫЙ ОТЧЁТ (ТЕКУЩИЙ КОД НАЧИНАЕТСЯ ЗДЕСЬ)
+                # ОДИНОЧНЫЙ ОТЧЁТ
                 result = results[0]
                 if not result["success"]:
                     message = f"❌ Ошибка анализа {result['symbol']}: {result.get('error', 'Unknown error')}"
                 else:
                     data = result["result"]
-                    response = (
-                        f"✅ *Анализ {result['symbol']} завершён*\n"
-                        f"⏱️ Время: {result['time']:.2f}s\n\n"
-                        f"📈 *Свечи загружены:*\n"
-                        f"  • 1H: {data['candles']['1H']} шт.\n"
-                        f"  • 4H: {data['candles']['4H']} шт.\n"
-                        f"  • 1D: {data['candles']['1D']} шт.\n\n"
-                    )
+                    signal_id = data.get("signal_id")
 
-                    # MTF тренды
-                    mtf = data.get("mtf_trends", {})
-                    if mtf:
-                        response += (
-                            f"📊 *MTF Тренды:*\n"
-                            f"  • 1H: {mtf.get('1H', {}).get('direction', 'N/A')}\n"
-                            f"  • 4H: {mtf.get('4H', {}).get('direction', 'N/A')}\n"
-                            f"  • 1D: {mtf.get('1D', {}).get('direction', 'N/A')}\n\n"
-                        )
-
-                    # Volume Profile
-                    vp = data.get("volume_profile", {})
-                    if vp:
-                        imbalance_val = vp.get("imbalance", 0) * 100
-                        response += (
-                            f"📊 *Volume Profile:*\n"
-                            f"  • Давление: {vp.get('pressure', 'N/A')}\n"
-                            f"  • Дисбаланс: {imbalance_val:.1f}%\n\n"
-                        )
-
-                    # Сценарий
-                    scenario = data.get("matched_scenario")
-                    if scenario:
-                        match_score_val = scenario.get("match_score", 0) * 100
-                        response += (
-                            f"🎯 *Сценарий:* {scenario.get('name', 'N/A')}\n"
-                            f"   Match: {match_score_val:.1f}%\n"
-                            f"   Direction: {scenario.get('direction', 'N/A')}\n\n"
+                    if signal_id:
+                        response = (
+                            f"✅ *Анализ {result['symbol']} завершён*\n"
+                            f"⏱️ Время: {result['time']:.2f}s\n\n"
+                            f"🎯 *Сигнал #{signal_id} создан!*\n"
+                            f"💰 Entry: ${data.get('entry_price', 0):,.2f}\n"
+                            f"📊 Score: {data.get('score', 0):.1f}%\n"
+                            f"📈 Direction: {data.get('direction', 'N/A')}\n\n"
+                            f"💡 Используйте `/signals` для просмотра деталей"
                         )
                     else:
-                        response += "⚠️ Сценарий не найден\n\n"
-
-                    # Batch stats
-                    batch_stats = self.bot_instance.bybit_connector.get_batch_stats()
-                    cache_hit_val = batch_stats["cache_hit_rate"] * 100
-                    response += (
-                        f"📊 *Batch Stats:*\n"
-                        f"  • Cache hit rate: {cache_hit_val:.1f}%\n"
-                        f"  • Time saved: {batch_stats['total_time_saved']:.2f}s"
-                    )
+                        response = (
+                            f"✅ *Анализ {result['symbol']} завершён*\n"
+                            f"⏱️ Время: {result['time']:.2f}s\n\n"
+                            f"ℹ️ Подходящих сигналов не найдено\n"
+                            f"Рынок не соответствует критериям входа"
+                        )
 
                     message = response
 
@@ -642,14 +596,6 @@ class TelegramBotHandler:
                 f"❌ Ошибка анализа: {e}", parse_mode=ParseMode.MARKDOWN
             )
 
-        except Exception as e:
-            await update.message.reply_text(
-                f"❌ Ошибка: {str(e)}", parse_mode=ParseMode.MARKDOWN
-            )
-            logger.error(f"❌ /analyze_batching error: {e}")
-            import traceback
-
-            logger.error(traceback.format_exc())
 
     async def cmd_trades(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         """Команда /trades [days] - Журнал сделок"""
@@ -1301,7 +1247,236 @@ class TelegramBotHandler:
             logger.error(f"❌ Ошибка /available: {e}")
             await update.message.reply_text(f"❌ Ошибка: {str(e)}")
 
-    # ==================== АВТОУВЕДОМЛЕНИЯ ====================
+        # АВТОУВЕДОМЛЕНИЯ
+
+    async def cmd_roi(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+        """📊 /roi - Показывает активные сигналы с ROI"""
+        try:
+            # Фильтр по символу (если указан)
+            symbol_filter = context.args[0].upper() if context.args else None
+
+            await update.message.reply_text("📊 Загрузка активных позиций...")
+
+            # Получаем активные сигналы из БД
+            from config.settings import DATABASE_PATH
+
+            conn = sqlite3.connect(str(DATABASE_PATH))
+            query = """
+                SELECT id, symbol, direction, entry_price, tp1, status
+                FROM signals
+                ORDER BY id DESC
+                LIMIT 10
+            """
+            df = pd.read_sql_query(query, conn)
+            conn.close()
+
+            if df.empty:
+                await update.message.reply_text("📊 Нет активных сигналов")
+                return
+
+            # Фильтруем по символу если указан
+            if symbol_filter:
+                df = df[df['symbol'] == symbol_filter]
+                if df.empty:
+                    await update.message.reply_text(f"📊 Нет активных сигналов для {symbol_filter}")
+                    return
+
+            # Формируем сообщение
+            message = "📊 *ACTIVE SIGNALS & ROI*\n\n"
+
+            total_pnl = 0
+            win_count = 0
+            loss_count = 0
+
+            # Показываем первые 10 сигналов
+            count = 0
+            for idx, row in df.head(10).iterrows():
+                signal_id = row['id']
+                symbol = row['symbol']
+                direction = row['direction']
+                entry = float(row['entry_price'])
+                tp1 = float(row['tp1'])
+
+                # Получаем текущую цену
+                try:
+                    if hasattr(self.bot_instance, 'bybit_connector'):
+                        ticker = await self.bot_instance.bybit_connector.get_ticker(symbol)
+                        current = float(ticker.get('last_price', entry)) if ticker else entry
+                    else:
+                        current = entry
+                except:
+                    current = entry
+
+                # Рассчитываем P&L
+                if direction == 'LONG':
+                    pnl = ((current - entry) / entry) * 100 if entry > 0 else 0
+                    to_tp1 = ((tp1 - current) / current) * 100 if current > 0 else 0
+                else:
+                    pnl = ((entry - current) / entry) * 100 if entry > 0 else 0
+                    to_tp1 = ((current - tp1) / current) * 100 if current > 0 else 0
+
+                total_pnl += pnl
+
+                if pnl > 0:
+                    win_count += 1
+                    emoji = "📈"
+                elif pnl < 0:
+                    loss_count += 1
+                    emoji = "📉"
+                else:
+                    emoji = "⚪"
+
+                message += f"{emoji} *{symbol}\\_{signal_id}* {direction}\n"
+                message += f"Entry: ${entry:.2f} | Current: ${current:.2f}\n"
+                message += f"P&L: *{pnl:+.2f}%* {emoji}"
+                if to_tp1 > 0:
+                    message += f" | To TP1: {to_tp1:+.2f}%"
+                message += "\n\n"
+
+                count += 1
+
+            # Если сигналов больше 10
+            total_count = len(df)
+            if total_count > 10:
+                message += f"... и ещё {total_count - 10} сигналов\n\n"
+
+            # Итоговая статистика
+            avg_pnl = total_pnl / count if count > 0 else 0
+
+            message += f"📊 *Total Active:* {total_count} signals\n"
+            message += f"💰 *Average P&L:* {avg_pnl:+.2f}%\n"
+            message += f"✅ *Winning:* {win_count} | ❌ *Losing:* {loss_count}"
+
+            await update.message.reply_text(message, parse_mode=ParseMode.MARKDOWN)
+
+        except Exception as e:
+            logger.error(f"❌ Ошибка cmd_roi: {e}", exc_info=True)
+            await update.message.reply_text(f"❌ Ошибка получения ROI: {str(e)}")
+
+
+    async def cmd_mtf(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+        """📊 /mtf SYMBOL - Multi-Timeframe анализ"""
+        try:
+            if not context.args:
+                await update.message.reply_text("❌ Укажите символ: /mtf BTCUSDT")
+                return
+
+            symbol = context.args[0].upper()
+            await update.message.reply_text(f"📊 Анализ трендов для {symbol}...")
+
+            # Проверяем где находится MTF Filter
+            bot = self.bot_instance
+            signal_gen = getattr(bot, 'signal_generator', None)
+
+            multi_tf_filter = None
+            if hasattr(bot, 'multitffilter') and bot.multitffilter:  # ← ИСПРАВЛЕНО! СНАЧАЛА БЕЗ ПОДЧЕРКИВАНИЯ
+                multi_tf_filter = bot.multitffilter
+            elif hasattr(bot, 'multi_tf_filter') and bot.multi_tf_filter:  # ← ПОТОМ С ПОДЧЕРКИВАНИЕМ
+                multi_tf_filter = bot.multi_tf_filter
+            elif signal_gen and hasattr(signal_gen, 'multitffilter'):
+                multi_tf_filter = signal_gen.multitffilter
+            elif signal_gen and hasattr(signal_gen, 'multi_tf_filter'):
+                multi_tf_filter = signal_gen.multi_tf_filter
+
+            if not multi_tf_filter:
+                await update.message.reply_text("❌ Multi-TF Filter не инициализирован")
+                return
+
+
+            # Получаем MTF данные
+            summary = await multi_tf_filter.get_trend_summary(symbol)
+
+            if 'error' in summary:
+                await update.message.reply_text(f"❌ Ошибка: {summary['error']}")
+                return
+
+            # Формируем сообщение
+            trends = summary['trends']
+            dominant = summary['dominant_trend']
+            agreement = summary['agreement_score'] * 100
+            strength = summary['overall_strength']
+
+            message = "📊 *MULTI-TIMEFRAME ANALYSIS*\n\n"
+            message += f"💎 *{symbol}*\n\n"
+
+            # Тренды по таймфреймам
+            for tf, trend in trends.items():
+                emoji = "📈" if trend == "UP" else ("📉" if trend == "DOWN" else "⚪")
+                message += f"{emoji} *{tf.upper()}:* {trend}\n"
+
+            message += f"\n🎯 *Dominant:* {dominant} {'📈' if dominant == 'UP' else '📉'}\n"
+            message += f"💪 *Agreement:* {agreement:.0f}%\n"
+            message += f"⚡ *Strength:* {strength:.2f}\n\n"
+
+            # Multi-TF Filter verdict
+            if agreement >= 67:  # 2 из 3
+                message += "✅ *MTF Filter:* PASS (ready for signals)"
+            else:
+                message += "⚠️ *MTF Filter:* BLOCKED (low agreement)"
+
+            await update.message.reply_text(message, parse_mode=ParseMode.MARKDOWN)
+
+        except Exception as e:
+            logger.error(f"❌ Ошибка cmd_mtf: {e}", exc_info=True)
+            await update.message.reply_text(f"❌ MTF Ошибка: {str(e)}")
+
+
+    async def cmd_filters(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+        """🔍 /filters - Показывает статус фильтров"""
+        try:
+            message = "🔍 *FILTERS STATUS*\n\n"
+
+            # Проверяем где находятся фильтры
+            bot = self.bot_instance
+            signal_gen = getattr(bot, 'signal_generator', None)
+
+            # Confirm Filter
+            confirm_filter = None
+            if hasattr(bot, 'confirm_filter') and bot.confirm_filter:
+                confirm_filter = bot.confirm_filter
+            elif hasattr(bot, 'confirmfilter') and bot.confirmfilter:  # ← БЕЗ ПОДЧЕРКИВАНИЯ
+                confirm_filter = bot.confirmfilter
+            elif signal_gen and hasattr(signal_gen, 'confirm_filter'):
+                confirm_filter = signal_gen.confirm_filter
+
+            if confirm_filter:
+                cf = confirm_filter
+                message += "✅ *Confirm Filter:* ACTIVE\n"
+                message += f"   • CVD threshold: ≥{getattr(cf, 'min_cvd_pct', 0.5)}%\n"
+                message += f"   • Volume multiplier: {getattr(cf, 'min_volume_ratio', 1.5)}x\n"
+                message += f"   • Candle check: {'ON' if getattr(cf, 'check_confirmation_candle', True) else 'OFF'}\n\n"
+            else:
+                message += "⚪ *Confirm Filter:* DISABLED\n\n"
+
+            # Multi-TF Filter
+            multi_tf_filter = None
+            if hasattr(bot, 'multitffilter') and bot.multitffilter:  # ← ИСПРАВЛЕНО! СНАЧАЛА БЕЗ ПОДЧЕРКИВАНИЯ
+                multi_tf_filter = bot.multitffilter
+            elif hasattr(bot, 'multi_tf_filter') and bot.multi_tf_filter:  # ← ПОТОМ С ПОДЧЕРКИВАНИЕМ
+                multi_tf_filter = bot.multi_tf_filter
+            elif signal_gen and hasattr(signal_gen, 'multitffilter'):
+                multi_tf_filter = signal_gen.multitffilter
+            elif signal_gen and hasattr(signal_gen, 'multi_tf_filter'):
+                multi_tf_filter = signal_gen.multi_tf_filter
+
+            if multi_tf_filter:
+                mtf = multi_tf_filter
+                message += "✅ *Multi-TF Filter:* ACTIVE\n"
+                message += f"   • Min aligned: {mtf.min_aligned_count}/{len(mtf.default_timeframes)} timeframes\n"
+                message += f"   • Require all: {'YES' if mtf.require_all_aligned else 'NO'}\n"
+                message += f"   • Timeframes: {', '.join([tf.upper() for tf in mtf.default_timeframes])}\n"
+            else:
+                message += "⚪ *Multi-TF Filter:* DISABLED\n"
+
+
+            await update.message.reply_text(message, parse_mode=ParseMode.MARKDOWN)
+
+        except Exception as e:
+            logger.error(f"❌ Ошибка cmd_filters: {e}", exc_info=True)
+            await update.message.reply_text(f"❌ Ошибка: {str(e)}")
+
+
+
 
     async def notify_new_signal(self, signal: Dict):
         """Уведомление о новом сигнале"""

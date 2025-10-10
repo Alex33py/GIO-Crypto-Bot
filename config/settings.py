@@ -55,21 +55,21 @@ TELEGRAM_CONFIG = {
     "enabled": bool(TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID),
     "token": TELEGRAM_BOT_TOKEN,
     "chat_id": TELEGRAM_CHAT_ID,
-    "auto_signals": True,  # Автоматические уведомления о сигналах
-    "auto_alerts": True,  # Автоматические premium alerts
+    "auto_signals": True,
+    "auto_alerts": True,
     "commands_enabled": True,
 }
 
 # ============================================================================
-# НАСТРОЙКИ ЛОГИРОВАНИЯ
+# 📉 НАСТРОЙКИ ЛОГИРОВАНИЯ (ОПТИМИЗИРОВАНО)
 # ============================================================================
-LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()
+LOG_LEVEL = os.getenv("LOG_LEVEL", "WARNING").upper()  # ✅ ИЗМЕНЕНО: INFO -> WARNING
 LOG_FORMAT = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 LOG_DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
 
 # Настройка базового логгера
 logging.basicConfig(
-    level=getattr(logging, LOG_LEVEL, logging.INFO),
+    level=getattr(logging, LOG_LEVEL, logging.WARNING),  # ✅ ИЗМЕНЕНО: INFO -> WARNING
     format=LOG_FORMAT,
     datefmt=LOG_DATE_FORMAT,
     handlers=[
@@ -80,6 +80,18 @@ logging.basicConfig(
         ),
     ],
 )
+
+# ✅ НОВОЕ: Отключаем логи сторонних библиотек
+logging.getLogger("httpx").setLevel(logging.ERROR)
+logging.getLogger("urllib3").setLevel(logging.ERROR)
+logging.getLogger("websockets").setLevel(logging.ERROR)
+
+# ✅ НОВОЕ: Настройка уровней для модулей бота
+logging.getLogger("gio_bot").setLevel(logging.INFO)  # Основной бот - INFO
+logging.getLogger("trading").setLevel(logging.WARNING)  # Торговля - WARNING
+logging.getLogger("connectors").setLevel(logging.WARNING)  # Коннекторы - WARNING
+logging.getLogger("filters").setLevel(logging.INFO)  # Фильтры - INFO
+logging.getLogger("database").setLevel(logging.ERROR)  # БД - ERROR
 
 # Создание основного логгера
 logger = logging.getLogger("gio_bot")
@@ -108,12 +120,11 @@ if PRODUCTION_MODE:
         logger.warning(f"⚠️ Отсутствуют API ключи: {', '.join(missing_keys)}")
         logger.warning("💡 Некоторые функции могут быть недоступны")
 
-    # Предупреждение о необязательных ключах
-    if not CRYPTOPANIC_API_KEY:
-        logger.info("ℹ️ CryptoPanic API ключ не найден (опционально)")
-
-    if not CRYPTOCOMPARE_API_KEY:
-        logger.info("ℹ️ CryptoCompare API ключ не найден (опционально)")
+    # ✅ ИЗМЕНЕНО: Убрали лишние INFO логи
+    # if not CRYPTOPANIC_API_KEY:
+    #     logger.info("ℹ️ CryptoPanic API ключ не найден (опционально)")
+    # if not CRYPTOCOMPARE_API_KEY:
+    #     logger.info("ℹ️ CryptoCompare API ключ не найден (опционально)")
 
 # ============================================================================
 # НАСТРОЙКИ ТОРГОВЛИ
@@ -159,27 +170,27 @@ BINANCE_CONFIG = {
     "api_key": BINANCE_API_KEY,
     "api_secret": BINANCE_API_SECRET,
     "testnet": DEVELOPMENT_MODE,
-    "rate_limit": 1200,  # requests per minute
+    "rate_limit": 1200,
 }
 
 # ============================================================================
 # TRIGGER SYSTEM CONFIGURATION
 # ============================================================================
 TRIGGER_CONFIG = {
-    "t1_sensitivity": 0.7,  # Технический триггер
-    "t2_sensitivity": 1.5,  # Объёмный триггер
-    "t3_sensitivity": 0.6,  # Orderflow триггер
-    "require_all_triggers": False,  # False = хотя бы один, True = все три
+    "t1_sensitivity": 0.7,
+    "t2_sensitivity": 1.5,
+    "t3_sensitivity": 0.6,
+    "require_all_triggers": False,
 }
 
 # ============================================================================
 # PERFORMANCE OPTIMIZATION
 # ============================================================================
 PERFORMANCE_CONFIG = {
-    "process_pool_workers": 4,  # Для CPU-bound задач
-    "thread_pool_workers": 10,  # Для I/O-bound задач
-    "batch_size": 100,  # Размер батча для обработки
-    "batch_flush_interval": 5.0,  # Секунды
+    "process_pool_workers": 4,
+    "thread_pool_workers": 10,
+    "batch_size": 100,
+    "batch_flush_interval": 5.0,
 }
 
 # ============================================================================
@@ -267,14 +278,16 @@ def load_trading_pairs() -> List[str]:
     try:
         TRADING_PAIRS_CONFIG = Path(__file__).parent / "trading_pairs.json"
 
-        print(f"🔍 DEBUG: Путь к файлу: {TRADING_PAIRS_CONFIG}")
-        print(f"🔍 DEBUG: Файл существует: {TRADING_PAIRS_CONFIG.exists()}")
+        # ✅ ИЗМЕНЕНО: Убрали DEBUG логи
+        # print(f"🔍 DEBUG: Путь к файлу: {TRADING_PAIRS_CONFIG}")
+        # print(f"🔍 DEBUG: Файл существует: {TRADING_PAIRS_CONFIG.exists()}")
 
         if TRADING_PAIRS_CONFIG.exists():
             with open(TRADING_PAIRS_CONFIG, "r", encoding="utf-8") as f:
                 config = json.load(f)
 
-            print(f"🔍 DEBUG: Содержимое: {len(config.get('tracked_symbols', []))} пар")
+            # ✅ ИЗМЕНЕНО: Убрали DEBUG логи
+            # print(f"🔍 DEBUG: Содержимое: {len(config.get('tracked_symbols', []))} пар")
 
             active_pairs = [
                 pair["symbol"]
@@ -282,13 +295,15 @@ def load_trading_pairs() -> List[str]:
                 if pair.get("enabled", False)
             ]
 
-            print(f"🔍 DEBUG: Активные пары: {active_pairs}")
+            # ✅ ИЗМЕНЕНО: Убрали DEBUG логи
+            # print(f"🔍 DEBUG: Активные пары: {active_pairs}")
+
             logger.info(f"📋 Загружено {len(active_pairs)} активных пар из JSON")
             return active_pairs
         else:
             logger.warning("⚠️ Файл trading_pairs.json не найден")
     except Exception as e:
-        logger.error(f"❌ Ошибка загрузки: {e}", exc_info=True)
+        logger.error(f"❌ Ошибка загрузки: {e}")  # ✅ ИЗМЕНЕНО: Убрали exc_info
 
     default_pairs = ["BTCUSDT"]
     logger.info(f"📋 Fallback: {default_pairs}")
@@ -297,4 +312,5 @@ def load_trading_pairs() -> List[str]:
 
 # Загрузка торговых пар
 TRACKED_SYMBOLS = load_trading_pairs()
-print(f"🎯 ИТОГО TRACKED_SYMBOLS: {TRACKED_SYMBOLS}")
+# ✅ ИЗМЕНЕНО: Убрали print
+# print(f"🎯 ИТОГО TRACKED_SYMBOLS: {TRACKED_SYMBOLS}")
